@@ -10,9 +10,13 @@ use warnings;
 
 use ExtUtils::MakeMaker 6.64;
 
+use File::ShareDir::Install;
+
 #-> main
 
 my $min_perl_version = '5.10.1';
+
+install_share('share');
 
 WriteMakefile(
     NAME => 'Navel::Base::API',
@@ -36,8 +40,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Navel::Base' => 0,
         'Swagger2' => 0,
-        'File::ShareDir' => 0,
-        'File::Slurp' => 0
+        'File::ShareDir' => 0
     },
     TEST_REQUIRES => {
         'Test::More' => 0,
