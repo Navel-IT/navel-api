@@ -19,7 +19,7 @@ my $min_perl_version = '5.10.1';
 install_share('share');
 
 WriteMakefile(
-    NAME => 'Navel::Base::API',
+    NAME => 'Navel::API',
     VERSION_FROM => 'lib/Navel/Base/API.pm',
     ABSTRACT => 'navel-api-blueprints',
     AUTHOR => 'Yoann Le Garff, Nicolas Boquet and Yann Le Bras',
