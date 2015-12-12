@@ -44,7 +44,8 @@ WriteMakefile(
     },
     TEST_REQUIRES => {
         'Test::More' => 0,
-        'Test::Exception' => 0
+        'Test::Exception' => 0,
+        'Test::File::ShareDir' => 0
     },
     test => {
         TESTS => 't/*.t'
