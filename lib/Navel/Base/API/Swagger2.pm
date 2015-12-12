@@ -19,15 +19,13 @@ use Swagger2;
 
 use File::ShareDir;
 
-use File::Slurp;
-
 our $VERSION = 0.1;
 
 #-> methods
 
 sub new {
     Swagger2->new()->load(
-        File::ShareDir::dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift;
+        File::ShareDir::dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift
     );
 }
 
