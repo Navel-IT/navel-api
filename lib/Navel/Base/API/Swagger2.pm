@@ -17,7 +17,7 @@ use parent qw/
 
 use Swagger2;
 
-use File::ShareDir;
+use File::ShareDir 'dist_dir';
 
 our $VERSION = 0.1;
 
@@ -25,7 +25,7 @@ our $VERSION = 0.1;
 
 sub new {
     Swagger2->new()->load(
-        File::ShareDir::dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift
+        dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift
     );
 }
 
