@@ -3,7 +3,13 @@
     "info": {
         "title": "navel-scheduler",
         "description": "https://github.com/navel-it/navel-scheduler",
-        "version": "0.1.0"
+        "version": "0.1.0",
+        "contact": {
+            "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
+        },
+        "license": {
+            "name": "GNU GPL v3"
+        }
     },
     "basePath": "/api",
     "schemes": [
@@ -21,7 +27,8 @@
         "/status": {
             "get": {
                 "summary": "Show product status",
-                "operationId": "get_status",
+                "operationId": "show_status",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Product",
                 "tags": [
                     "status"
                 ],
@@ -40,8 +47,9 @@
         },
         "/save_configuration": {
             "put": {
-                "summary": "Save configuration",
-                "operationId": "put_save_configuration",
+                "summary": "Save all configuration",
+                "operationId": "save_all_configuration",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Backup",
                 "tags": [
                     "saveConfiguration"
                 ],
@@ -58,7 +66,8 @@
         "/main": {
             "get": {
                 "summary": "Show main configuration",
-                "operationId": "get_main",
+                "operationId": "show_main",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
                 "tags": [
                     "main"
                 ],
@@ -78,7 +87,8 @@
         "/main/webservices/credentials": {
             "put": {
                 "summary": "Modify credentials",
-                "operationId": "put_webservices_credentials",
+                "operationId": "modify_webservices_credentials",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
                 "tags": [
                     "main",
                     "credentials"
@@ -101,7 +111,8 @@
         "/jobs": {
             "get": {
                 "summary": "List job types",
-                "operationId": "get_job_types",
+                "operationId": "list_job_types",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
                 ],
@@ -124,7 +135,8 @@
         "/jobs/{jobType}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "get_job_names_by_type",
+                "operationId": "list_job_by_type",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
                 ],
@@ -152,7 +164,8 @@
         "/jobs/{jobType}/{jobName}": {
             "get": {
                 "summary": "Show the properties of a job",
-                "operationId": "get_job_by_type_and_name",
+                "operationId": "show_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
                 ],
@@ -177,10 +190,11 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/enable": {
+        "/jobs/{jobType}/{jobName}/{jobAction}": {
             "put": {
-                "summary": "Enable a job",
-                "operationId": "put_enable_job_by_type_and_name",
+                "summary": "Do an action on a job",
+                "operationId": "action_on_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
                 ],
@@ -190,56 +204,9 @@
                     },
                     {
                         "$ref": "#/parameters/jobName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/jobs/{jobType}/{jobName}/disable": {
-            "put": {
-                "summary": "Disable a job",
-                "operationId": "put_disable_job_by_type_and_name",
-                "tags": [
-                    "job"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/jobType"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/jobs/{jobType}/{jobName}/execute": {
-            "put": {
-                "summary": "Force the execution of a job",
-                "operationId": "put_execute_job_by_type_and_name",
-                "tags": [
-                    "job"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/jobType"
-                    },
-                    {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/jobAction"
                     }
                 ],
                 "responses": {
@@ -255,7 +222,8 @@
         "/collectors": {
             "get": {
                 "summary": "List collector names",
-                "operationId": "get_collector_names",
+                "operationId": "list_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -276,7 +244,8 @@
             },
             "post": {
                 "summary": "Create a collector",
-                "operationId": "post_collector",
+                "operationId": "new_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -293,7 +262,8 @@
         "/collectors/{collectorName}": {
             "get": {
                 "summary": "Show the properties of a collector",
-                "operationId": "get_collector_by_name",
+                "operationId": "show_collector",
+                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -316,7 +286,8 @@
             },
             "put": {
                 "summary": "Modify a collector",
-                "operationId": "put_collector_by_name",
+                "operationId": "modify_collector",
+                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -336,7 +307,8 @@
             },
             "delete": {
                 "summary": "Delete a collector",
-                "operationId": "delete_collector_by_name",
+                "operationId": "delete_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -358,7 +330,8 @@
         "/rabbitmq": {
             "get": {
                 "summary": "List RabbitMQ names",
-                "operationId": "get_rabbitmq_names",
+                "operationId": "list_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
                 "tags": [
                     "rabbitmq"
                 ],
@@ -379,7 +352,8 @@
             },
             "post": {
                 "summary": "Create a RabbitMQ and his publisher",
-                "operationId": "post_rabbitmq_by_name",
+                "operationId": "new_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
                 "tags": [
                     "rabbitmq"
                 ],
@@ -396,7 +370,8 @@
         "/rabbitmq/{rabbitmqName}": {
             "get": {
                 "summary": "Show the properties of a RabbitMQ",
-                "operationId": "get_rabbitmq_by_name",
+                "operationId": "show_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
                 "tags": [
                     "rabbitmq"
                 ],
@@ -419,7 +394,8 @@
             },
             "put": {
                 "summary": "Modify a RabbitMQ",
-                "operationId": "put_rabbitmq_by_name",
+                "operationId": "modify_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
                 "tags": [
                     "rabbitmq"
                 ],
@@ -439,7 +415,8 @@
             },
             "delete": {
                 "summary": "Delete a RabbitMQ",
-                "operationId": "delete_rabbitmq_by_name",
+                "operationId": "delete_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
                 "tags": [
                     "rabbitmq"
                 ],
@@ -461,7 +438,8 @@
         "/webservices/": {
             "get": {
                 "summary": "List webservice names",
-                "operationId": "get_webservices_names",
+                "operationId": "list_webservices",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
                 "tags": [
                     "webservice"
                 ],
@@ -484,7 +462,8 @@
         "/webservices/{webServiceName}": {
             "get": {
                 "summary": "Show the properties of a web service",
-                "operationId": "get_webservice_by_name",
+                "operationId": "show_webservice",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
                 "tags": [
                     "webservice"
                 ],
@@ -509,7 +488,8 @@
         "/publishers": {
             "get": {
                 "summary": "List publisher names",
-                "operationId": "list_publishers_by_name",
+                "operationId": "list_publishers",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -532,7 +512,8 @@
         "/publishers/{publisherName}": {
             "get": {
                 "summary": "Show the properties of a publisher",
-                "operationId": "get_publisher_by_name",
+                "operationId": "show_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -557,7 +538,8 @@
         "/publishers/{publisherName}/events": {
             "get": {
                 "summary": "List a publisher's serialized events",
-                "operationId": "get_events_of_a_publisher_by_name",
+                "operationId": "list_events_of_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -580,7 +562,8 @@
             },
             "post": {
                 "summary": "Create an event ans push it to the queue of this publisher",
-                "operationId": "post_event_to_a_publisher_by_name",
+                "operationId": "push_event_to_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -600,7 +583,8 @@
             },
             "delete": {
                 "summary": "Delete all events",
-                "operationId": "delete_all_events_of_a_publisher_by_name",
+                "operationId": "delete_all_events_from_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -619,38 +603,20 @@
                 }
             }
         },
-        "/publishers/{publisherName}/connect": {
+        "/publishers/{publisherName}/{publisherAction}": {
             "put": {
-                "summary": "Connect this publisher",
-                "operationId": "put_connect_publisher_by_name",
+                "summary": "Connect or disconnect this publisher",
+                "operationId": "connect_or_disconnect_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
                 ],
                 "parameters": [
                     {
                         "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
                     },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/publishers/{publisherName}/disconnect": {
-            "put": {
-                "summary": "Disconnect this publisher",
-                "operationId": "put_disconnect_publisher_by_name",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
                     {
-                        "$ref": "#/parameters/publisherName"
+                        "$ref": "#/parameters/publisherAction"
                     }
                 ],
                 "responses": {
@@ -1092,6 +1058,12 @@
             "required": true,
             "type": "string"
         },
+        "jobAction": {
+            "name": "jobAction",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
         "collectorName": {
             "name": "collectorName",
             "in": "path",
@@ -1112,6 +1084,12 @@
         },
         "publisherName": {
             "name": "publisherName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "publisherAction": {
+            "name": "publisherAction",
             "in": "path",
             "required": true,
             "type": "string"
