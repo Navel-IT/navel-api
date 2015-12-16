@@ -20,7 +20,7 @@ install_share('share');
 
 WriteMakefile(
     NAME => 'Navel::API',
-    VERSION_FROM => 'lib/Navel/Base/API.pm',
+    VERSION_FROM => 'lib/Navel/API.pm',
     ABSTRACT => 'navel-api-blueprints',
     AUTHOR => 'Yoann Le Garff, Nicolas Boquet and Yann Le Bras',
     LICENSE => 'GNU GPL v3',
