@@ -24,6 +24,8 @@ our $VERSION = 0.1;
 #-> methods
 
 sub new {
+    my $class = shift;
+
     Swagger2->new()->load(
         dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift
     );
