@@ -803,7 +803,8 @@
             "type": "object",
             "required": [
                 "name",
-                "enable",
+                "type",
+                "enabled",
                 "singleton",
                 "running"
             ],
@@ -811,7 +812,10 @@
                 "name": {
                     "type": "string"
                 },
-                "enable": {
+                "type": {
+                    "type": "string"
+                },
+                "enabled": {
                     "type": "boolean"
                 },
                 "singleton": {
@@ -964,20 +968,27 @@
             "type": "object",
             "required": [
                 "name",
+                "connecting",
                 "connected",
-                "messages_in_queue"
+                "disconnecting",
+                "disconnected"
             ],
             "properties": {
                 "name": {
                     "type": "string"
                 },
+                "connecting": {
+                    "type": "boolean"
+                },
                 "connected": {
                     "type": "boolean"
                 },
-                "messages_in_queue": {
-                    "type": "integer",
-                    "minimum": 0
-                }
+                "disconnecting": {
+                    "type": "boolean"
+                },
+                "disconnected": {
+                    "type": "boolean"
+                },
             }
         },
         "event": {
@@ -1021,15 +1032,11 @@
             "properties": {
                 "ok": {
                     "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "items": {}
                 },
                 "ko": {
                     "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "items": {}
                 }
             }
         },
