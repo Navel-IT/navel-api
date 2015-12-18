@@ -15,4 +15,6 @@ before_install:
           cpanm --quiet . && \
           popd
       }
+  - pushd ..
   - f_install_navel_dep navel-base
+  - popd
