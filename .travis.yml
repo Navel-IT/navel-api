@@ -1,9 +1,4 @@
 language: perl
-before_install:
-    - "git clone https://github.com/navel-it/navel-base.git"
-    - pushd navel-base/
-    - cpanm --quiet --notest .
-    - popd
 perl:
     - "5.20"
     - "5.18"
@@ -11,3 +6,13 @@ perl:
     - "5.14"
     - "5.12"
     - "5.10"
+before_install:
+  - |
+      f_install_navel_dep() {
+          git clone "https://github.com/navel-it/${1}" && \
+          pushd "${1}" && \
+          cpanm --quiet --installdeps --notest . && \
+          cpanm --quiet . && \
+          popd
+      }
+  - f_install_navel_dep navel-base
