@@ -5,14 +5,12 @@
 
 #-> initialization
 
-package Navel::API;
+package Navel::API 0.1;
 
 use strict;
 use warnings;
 
 use parent 'Navel::Base';
-
-our $VERSION = 0.1;
 
 #-> methods
 
@@ -27,6 +25,8 @@ our $VERSION = 0.1;
 __END__
 
 =pod
+
+=encoding utf8
 
 =head1 NAME
 

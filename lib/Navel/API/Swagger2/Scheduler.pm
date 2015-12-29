@@ -5,7 +5,7 @@
 
 #-> initialization
 
-package Navel::API::Swagger2::Scheduler;
+package Navel::API::Swagger2::Scheduler 0.1;
 
 use strict;
 use warnings;
@@ -14,8 +14,6 @@ use parent qw/
     Navel::Base
     Navel::Base::API::Swagger2
 /;
-
-our $VERSION = 0.1;
 
 our $SPEC_FILE = 'navel-scheduler-swagger2.json';
 
@@ -36,6 +34,8 @@ sub new {
 __END__
 
 =pod
+
+=encoding utf8
 
 =head1 NAME
 

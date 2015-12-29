@@ -5,7 +5,7 @@
 
 #-> initialization
 
-package Navel::Base::API::Swagger2;
+package Navel::Base::API::Swagger2 0.1;
 
 use strict;
 use warnings;
@@ -18,8 +18,6 @@ use parent qw/
 use Swagger2;
 
 use File::ShareDir 'dist_dir';
-
-our $VERSION = 0.1;
 
 #-> methods
 
@@ -42,6 +40,8 @@ sub new {
 __END__
 
 =pod
+
+=encoding utf8
 
 =head1 NAME
 
