@@ -1,1083 +1,1103 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"title": "navel-scheduler",
-		"description": "https://github.com/navel-it/navel-scheduler",
-		"version": "0.1.0",
-		"contact": {
-			"name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
-		},
-		"license": {
-			"name": "GNU GPL v3"
-		}
-	},
-	"basePath": "/api",
-	"schemes": [
-		"http",
-		"https"
-	],
-	"consumes": [
-		"application/json"
-	],
-	"produces": [
-		"application/json",
-		"text/html"
-	],
-	"paths": {
-		"/status": {
-			"get": {
-				"summary": "Show product status",
-				"operationId": "show_status",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Product",
-				"tags": [
-					"status"
-				],
-				"responses": {
-					"200": {
-						"description": "Product status",
-						"schema": {
-							"$ref": "#/definitions/productStatus"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/save_configuration": {
-			"put": {
-				"summary": "Save all configuration",
-				"operationId": "save_all_configuration",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Backup",
-				"tags": [
-					"saveConfiguration"
-				],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/main": {
-			"get": {
-				"summary": "Show main configuration",
-				"operationId": "show_main",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
-				"tags": [
-					"main"
-				],
-				"responses": {
-					"200": {
-						"description": "Main configuration",
-						"schema": {
-							"$ref": "#/definitions/main"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/main/webservices/credentials": {
-			"put": {
-				"summary": "Modify credentials",
-				"operationId": "modify_webservices_credentials",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
-				"tags": [
-					"main",
-					"credentials"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/credentials"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/jobs": {
-			"get": {
-				"summary": "List job types",
-				"operationId": "list_job_types",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
-				"tags": [
-					"job"
-				],
-				"responses": {
-					"200": {
-						"description": "Job types",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/jobs/{jobType}": {
-			"get": {
-				"summary": "List job names by job type",
-				"operationId": "list_job_by_type",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
-				"tags": [
-					"job"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/jobType"
-				}],
-				"responses": {
-					"200": {
-						"description": "Job names by job type",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/jobs/{jobType}/{jobName}": {
-			"get": {
-				"summary": "Show the properties of a job",
-				"operationId": "show_job_by_type_and_name",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
-				"tags": [
-					"job"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/jobType"
-				}, {
-					"$ref": "#/parameters/jobName"
-				}],
-				"responses": {
-					"200": {
-						"description": "Job",
-						"schema": {
-							"$ref": "#/definitions/job"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/jobs/{jobType}/{jobName}/{jobAction}": {
-			"put": {
-				"summary": "Do an action on a job",
-				"operationId": "action_on_job_by_type_and_name",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
-				"tags": [
-					"job"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/jobType"
-				}, {
-					"$ref": "#/parameters/jobName"
-				}, {
-					"$ref": "#/parameters/jobAction"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/collectors": {
-			"get": {
-				"summary": "List collector names",
-				"operationId": "list_collector",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
-				"tags": [
-					"collector"
-				],
-				"responses": {
-					"200": {
-						"description": "Collector names",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"post": {
-				"summary": "Create a collector",
-				"operationId": "new_collector",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
-				"tags": [
-					"collector"
-				],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/collectors/{collectorName}": {
-			"get": {
-				"summary": "Show the properties of a collector",
-				"operationId": "show_collector",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
-				"tags": [
-					"collector"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/collectorName"
-				}],
-				"responses": {
-					"200": {
-						"description": "Collector",
-						"schema": {
-							"$ref": "#/definitions/collector"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"put": {
-				"summary": "Modify a collector",
-				"operationId": "modify_collector",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
-				"tags": [
-					"collector"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/collectorName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"delete": {
-				"summary": "Delete a collector",
-				"operationId": "delete_collector",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
-				"tags": [
-					"collector"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/collectorName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/rabbitmq": {
-			"get": {
-				"summary": "List RabbitMQ names",
-				"operationId": "list_rabbitmq",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-				"tags": [
-					"rabbitmq"
-				],
-				"responses": {
-					"200": {
-						"description": "RabbitMQ names",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"post": {
-				"summary": "Create a RabbitMQ and his publisher",
-				"operationId": "new_rabbitmq",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-				"tags": [
-					"rabbitmq"
-				],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/rabbitmq/{rabbitmqName}": {
-			"get": {
-				"summary": "Show the properties of a RabbitMQ",
-				"operationId": "show_rabbitmq",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-				"tags": [
-					"rabbitmq"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/rabbitmqName"
-				}],
-				"responses": {
-					"200": {
-						"description": "RabbitMQ",
-						"schema": {
-							"$ref": "#/definitions/rabbitmq"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"put": {
-				"summary": "Modify a RabbitMQ",
-				"operationId": "modify_rabbitmq",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-				"tags": [
-					"rabbitmq"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/rabbitmqName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"delete": {
-				"summary": "Delete a RabbitMQ",
-				"operationId": "delete_rabbitmq",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-				"tags": [
-					"rabbitmq"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/rabbitmqName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/webservices/": {
-			"get": {
-				"summary": "List webservice names",
-				"operationId": "list_webservices",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
-				"tags": [
-					"webservice"
-				],
-				"responses": {
-					"200": {
-						"description": "Web service names",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/webservices/{webServiceName}": {
-			"get": {
-				"summary": "Show the properties of a web service",
-				"operationId": "show_webservice",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
-				"tags": [
-					"webservice"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/webServiceName"
-				}],
-				"responses": {
-					"200": {
-						"description": "Web service",
-						"schema": {
-							"$ref": "#/definitions/webservice"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/publishers": {
-			"get": {
-				"summary": "List publisher names",
-				"operationId": "list_publishers",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"responses": {
-					"200": {
-						"description": "Publisher names",
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/publishers/{publisherName}": {
-			"get": {
-				"summary": "Show the properties of a publisher",
-				"operationId": "show_publisher",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/publisherName"
-				}],
-				"responses": {
-					"200": {
-						"description": "Publisher",
-						"schema": {
-							"$ref": "#/definitions/publisher"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/publishers/{publisherName}/events": {
-			"get": {
-				"summary": "List a publisher's serialized events",
-				"operationId": "list_events_of_a_publisher",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/publisherName"
-				}],
-				"responses": {
-					"200": {
-						"description": "Serialized event",
-						"schema": {
-							"$ref": "#/definitions/event"
-						}
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"post": {
-				"summary": "Create an event ans push it to the queue of this publisher",
-				"operationId": "push_event_to_a_publisher",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/publisherName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			},
-			"delete": {
-				"summary": "Delete all events",
-				"operationId": "delete_all_events_from_a_publisher",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/publisherName"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		},
-		"/publishers/{publisherName}/{publisherAction}": {
-			"put": {
-				"summary": "Connect or disconnect this publisher",
-				"operationId": "connect_or_disconnect_publisher",
-				"x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
-				"tags": [
-					"publisher"
-				],
-				"parameters": [{
-					"$ref": "#/parameters/publisherName"
-				}, {
-					"$ref": "#/parameters/publisherAction"
-				}],
-				"responses": {
-					"200": {
-						"$ref": "#/responses/oKKO"
-					},
-					"default": {
-						"$ref": "#/responses/unexpectedError"
-					}
-				}
-			}
-		}
-	},
-	"definitions": {
-		"productStatus": {
-			"type": "object",
-			"properties": {
-				"version": {
-					"type": "string"
-				},
-				"api_version": {
-					"type": "string"
-				}
-			}
-		},
-		"main": {
-			"type": "object",
-			"required": [
-				"collectors",
-				"rabbitmq",
-				"webservices"
-			],
-			"properties": {
-				"collectors": {
-					"$ref": "#/definitions/mainCollectors"
-				},
-				"rabbitmq": {
-					"$ref": "#/definitions/mainRabbitMQ"
-				},
-				"webservices": {
-					"$ref": "#/definitions/mainWebServices"
-				}
-			}
-		},
-		"mainCollectors": {
-			"type": "object",
-			"required": [
-				"definitions_from_file",
-				"collectors_exec_directory",
-				"maximum",
-				"maximum_simultaneous_exec",
-				"execution_timeout"
-			],
-			"properties": {
-				"definitions_from_file": {
-					"type": "string"
-				},
-				"collectors_exec_directory": {
-					"type": "string"
-				},
-				"maximum": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"maximum_simultaneous_exec": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"execution_timeout": {
-					"type": "integer",
-					"minimum": 0
-				}
-			}
-		},
-		"mainRabbitMQ": {
-			"type": "object",
-			"required": [
-				"definitions_from_file",
-				"maximum",
-				"maximum_simultaneous_exec"
-			],
-			"properties": {
-				"definitions_from_file": {
-					"type": "string"
-				},
-				"maximum": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"maximum_simultaneous_exec": {
-					"type": "integer",
-					"minimum": 0
-				}
-			}
-		},
-		"mainWebServices": {
-			"type": "object",
-			"required": [
-				"definitions_from_file",
-				"credentials",
-				"mojo_server"
-			],
-			"properties": {
-				"definitions_from_file": {
-					"type": "string"
-				},
-				"credentials": {
-					"$ref": "#/definitions/mainWebServicesCredentials"
-				},
-				"mojo_server": {
-					"$ref": "#/definitions/mainWebServicesMojoServer"
-				}
-			}
-		},
-		"mainWebServicesCredentials": {
-			"type": "object",
-			"required": [
-				"login",
-				"password"
-			],
-			"properties": {
-				"login": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				}
-			}
-		},
-		"mainWebServicesMojoServer": {
-			"type": "object",
-			"properties": {
-				"reverse_proxy": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"backlog": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"inactivity_timeout": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"max_clients": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"max_requests": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"accepts": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"accept_interval": {
-					"type": "number",
-					"minimum": 0
-				},
-				"graceful_timeout": {
-					"type": "number",
-					"minimum": 0
-				},
-				"heartbeat_interval": {
-					"type": "number",
-					"minimum": 0
-				},
-				"heartbeat_timeout": {
-					"type": "number",
-					"minimum": 0
-				},
-				"multi_accept": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"workers": {
-					"type": "integer",
-					"minimum": 0
-				}
-			}
-		},
-		"job": {
-			"type": "object",
-			"required": [
-				"name",
-				"type",
-				"enabled",
-				"singleton",
-				"running"
-			],
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"type": {
-					"type": "string"
-				},
-				"enabled": {
-					"type": "boolean"
-				},
-				"singleton": {
-					"type": "boolean"
-				},
-				"running": {
-					"type": "integer",
-					"minimum": 0
-				}
-			}
-		},
-		"collector": {
-			"type": "object",
-			"required": [
-				"name",
-				"collection",
-				"type",
-				"singleton",
-				"scheduling"
-			],
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"collection": {
-					"type": "string"
-				},
-				"type": {
-					"type": "string"
-				},
-				"singleton": {
-					"type": "boolean"
-				},
-				"scheduling": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"source": {
-					"type": "string"
-				},
-				"input": {}
-			}
-		},
-		"rabbitmq": {
-			"type": "object",
-			"required": [
-				"name",
-				"host",
-				"port",
-				"user",
-				"password",
-				"timeout",
-				"vhost",
-				"tls",
-				"heartbeat",
-				"exchange",
-				"delivery_mode",
-				"scheduling",
-				"auto_connect"
-			],
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"host": {
-					"type": "string"
-				},
-				"port": {
-					"type": "integer",
-					"minimum": 0,
-					"maximum": 65536
-				},
-				"user": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				},
-				"timeout": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"vhost": {
-					"type": "integer"
-				},
-				"tls": {
-					"type": "boolean"
-				},
-				"heartbeat": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"exchange": {
-					"type": "string"
-				},
-				"delivery_mode": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"scheduling": {
-					"type": "integer",
-					"minimum": 0
-				},
-				"auto_connect": {
-					"type": "boolean"
-				}
-			}
-		},
-		"webservice": {
-			"type": "object",
-			"required": [
-				"name",
-				"interface_mask",
-				"port",
-				"tls"
-			],
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"interface_mask": {
-					"type": "string"
-				},
-				"port": {
-					"type": "integer",
-					"minimum": 0,
-					"maximum": 65536
-				},
-				"tls": {
-					"type": "boolean"
-				},
-				"ca": {
-					"type": "string"
-				},
-				"cert": {
-					"type": "string"
-				},
-				"ciphers": {
-					"type": "string"
-				},
-				"key": {
-					"type": "string"
-				},
-				"verify": {
-					"type": "string"
-				}
-			}
-		},
-		"publisher": {
-			"type": "object",
-			"required": [
-				"name",
-				"connecting",
-				"connected",
-				"disconnecting",
-				"disconnected"
-			],
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"connecting": {
-					"type": "boolean"
-				},
-				"connected": {
-					"type": "boolean"
-				},
-				"disconnecting": {
-					"type": "boolean"
-				},
-				"disconnected": {
-					"type": "boolean"
-				}
-			}
-		},
-		"event": {
-			"type": "object",
-			"required": [
-				"event_definition"
-			],
-			"properties": {
-				"event_definition": {
-					"type": "object",
-					"required": [
-						"datas",
-						"collection"
-					],
-					"properties": {
-						"datas": {},
-						"collection": {
-							"type": "string"
-						},
-						"starting_time": {
-							"type": "integer",
-							"minimum": 0
-						},
-						"ending_time": {
-							"type": "integer",
-							"maximum": 0
-						}
-					}
-				},
-				"status": {
-					"type": "string"
-				}
-			}
-		},
-		"oKKO": {
-			"type": "object",
-			"required": [
-				"ok",
-				"ko"
-			],
-			"properties": {
-				"ok": {
-					"type": "array",
-					"items": {}
-				},
-				"ko": {
-					"type": "array",
-					"items": {}
-				}
-			}
-		},
-		"unexpectedError": {
-			"type": "string"
-		}
-	},
-	"parameters": {
-		"credentials": {
-			"name": "credentials",
-			"in": "body",
-			"required": true,
-			"schema": {
-				"$ref": "#/definitions/mainWebServicesCredentials"
-			}
-		},
-		"jobType": {
-			"name": "jobType",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"jobName": {
-			"name": "jobName",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"jobAction": {
-			"name": "jobAction",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"collectorName": {
-			"name": "collectorName",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"rabbitmqName": {
-			"name": "rabbitmqName",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"webServiceName": {
-			"name": "webServiceName",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"publisherName": {
-			"name": "publisherName",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		},
-		"publisherAction": {
-			"name": "publisherAction",
-			"in": "path",
-			"required": true,
-			"type": "string"
-		}
-	},
-	"responses": {
-		"oKKO": {
-			"description": "OK and KO messages",
-			"schema": {
-				"$ref": "#/definitions/oKKO"
-			}
-		},
-		"unexpectedError": {
-			"description": "Unexpected Error",
-			"schema": {
-				"$ref": "#/definitions/unexpectedError"
-			}
-		}
-	}
+    "swagger": "2.0",
+    "info": {
+        "title": "navel-scheduler",
+        "description": "https://github.com/navel-it/navel-scheduler",
+        "version": "0.1.0",
+        "contact": {
+            "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
+        },
+        "license": {
+            "name": "GNU GPL v3"
+        }
+    },
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json",
+        "text/html"
+    ],
+    "paths": {
+        "/status": {
+            "get": {
+                "summary": "Show product status",
+                "operationId": "show_status",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Product",
+                "tags": [
+                    "status"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product status",
+                        "schema": {
+                            "$ref": "#/definitions/productStatus"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/save_configuration": {
+            "put": {
+                "summary": "Save all configuration",
+                "operationId": "save_all_configuration",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Backup",
+                "tags": [
+                    "saveConfiguration"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/main": {
+            "get": {
+                "summary": "Show main configuration",
+                "operationId": "show_main",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
+                "tags": [
+                    "main"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Main configuration",
+                        "schema": {
+                            "$ref": "#/definitions/main"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/main/webservices/credentials": {
+            "put": {
+                "summary": "Modify credentials",
+                "operationId": "modify_webservices_credentials",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
+                "tags": [
+                    "main",
+                    "credentials"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/credentials"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs": {
+            "get": {
+                "summary": "List job types",
+                "operationId": "list_job_types",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job types",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}": {
+            "get": {
+                "summary": "List job names by job type",
+                "operationId": "list_job_by_type",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/jobType"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Job names by job type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}": {
+            "get": {
+                "summary": "Show the properties of a job",
+                "operationId": "show_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/jobType"
+                }, {
+                    "$ref": "#/parameters/jobName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Job",
+                        "schema": {
+                            "$ref": "#/definitions/job"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/{jobAction}": {
+            "put": {
+                "summary": "Do an action on a job",
+                "operationId": "action_on_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/jobType"
+                }, {
+                    "$ref": "#/parameters/jobName"
+                }, {
+                    "$ref": "#/parameters/jobAction"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/collectors": {
+            "get": {
+                "summary": "List collector names",
+                "operationId": "list_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "tags": [
+                    "collector"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Collector names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a collector",
+                "operationId": "new_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "tags": [
+                    "collector"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/collectors/{collectorName}": {
+            "get": {
+                "summary": "Show the properties of a collector",
+                "operationId": "show_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "tags": [
+                    "collector"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/collectorName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Collector",
+                        "schema": {
+                            "$ref": "#/definitions/collector"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify a collector",
+                "operationId": "modify_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "tags": [
+                    "collector"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/collectorName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a collector",
+                "operationId": "delete_collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "tags": [
+                    "collector"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/collectorName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/rabbitmq": {
+            "get": {
+                "summary": "List RabbitMQ names",
+                "operationId": "list_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
+                "tags": [
+                    "rabbitmq"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "RabbitMQ names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a RabbitMQ and his publisher",
+                "operationId": "new_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
+                "tags": [
+                    "rabbitmq"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/rabbitmq/{rabbitmqName}": {
+            "get": {
+                "summary": "Show the properties of a RabbitMQ",
+                "operationId": "show_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
+                "tags": [
+                    "rabbitmq"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/rabbitmqName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "RabbitMQ",
+                        "schema": {
+                            "$ref": "#/definitions/rabbitmq"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Modify a RabbitMQ",
+                "operationId": "modify_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
+                "tags": [
+                    "rabbitmq"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/rabbitmqName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a RabbitMQ",
+                "operationId": "delete_rabbitmq",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
+                "tags": [
+                    "rabbitmq"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/rabbitmqName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/webservices/": {
+            "get": {
+                "summary": "List webservice names",
+                "operationId": "list_webservices",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
+                "tags": [
+                    "webservice"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Web service names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/webservices/{webServiceName}": {
+            "get": {
+                "summary": "Show the properties of a web service",
+                "operationId": "show_webservice",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
+                "tags": [
+                    "webservice"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/webServiceName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Web service",
+                        "schema": {
+                            "$ref": "#/definitions/webservice"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers": {
+            "get": {
+                "summary": "List publisher names",
+                "operationId": "list_publishers",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Publisher names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers/{publisherName}": {
+            "get": {
+                "summary": "Show the properties of a publisher",
+                "operationId": "show_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/publisherName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Publisher",
+                        "schema": {
+                            "$ref": "#/definitions/publisher"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers/{publisherName}/events": {
+            "get": {
+                "summary": "List a publisher's serialized events",
+                "operationId": "list_events_of_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/publisherName"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Serialized event",
+                        "schema": {
+                            "$ref": "#/definitions/event"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create an event ans push it to the queue of this publisher",
+                "operationId": "push_event_to_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/publisherName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete all events",
+                "operationId": "delete_all_events_from_a_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/publisherName"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers/{publisherName}/{publisherAction}": {
+            "put": {
+                "summary": "Connect or disconnect this publisher",
+                "operationId": "connect_or_disconnect_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [{
+                    "$ref": "#/parameters/publisherName"
+                }, {
+                    "$ref": "#/parameters/publisherAction"
+                }],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "productStatus": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "string"
+                },
+                "api_version": {
+                    "type": "string"
+                }
+            }
+        },
+        "main": {
+            "type": "object",
+            "required": [
+                "collectors",
+                "rabbitmq",
+                "webservices"
+            ],
+            "properties": {
+                "collectors": {
+                    "$ref": "#/definitions/mainCollectors"
+                },
+                "rabbitmq": {
+                    "$ref": "#/definitions/mainRabbitMQ"
+                },
+                "webservices": {
+                    "$ref": "#/definitions/mainWebServices"
+                }
+            }
+        },
+        "mainCollectors": {
+            "type": "object",
+            "required": [
+                "definitions_from_file",
+                "collectors_exec_directory",
+                "maximum",
+                "maximum_simultaneous_exec",
+                "execution_timeout"
+            ],
+            "properties": {
+                "definitions_from_file": {
+                    "type": "string"
+                },
+                "collectors_exec_directory": {
+                    "type": "string"
+                },
+                "maximum": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maximum_simultaneous_exec": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "execution_timeout": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "mainRabbitMQ": {
+            "type": "object",
+            "required": [
+                "definitions_from_file",
+                "maximum",
+                "maximum_simultaneous_exec"
+            ],
+            "properties": {
+                "definitions_from_file": {
+                    "type": "string"
+                },
+                "maximum": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maximum_simultaneous_exec": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "mainWebServices": {
+            "type": "object",
+            "required": [
+                "definitions_from_file",
+                "credentials",
+                "mojo_server"
+            ],
+            "properties": {
+                "definitions_from_file": {
+                    "type": "string"
+                },
+                "credentials": {
+                    "$ref": "#/definitions/mainWebServicesCredentials"
+                },
+                "mojo_server": {
+                    "$ref": "#/definitions/mainWebServicesMojoServer"
+                }
+            }
+        },
+        "mainWebServicesCredentials": {
+            "type": "object",
+            "required": [
+                "login",
+                "password"
+            ],
+            "properties": {
+                "login": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "mainWebServicesMojoServer": {
+            "type": "object",
+            "properties": {
+                "reverse_proxy": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "backlog": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "inactivity_timeout": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "max_clients": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "max_requests": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "accepts": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "accept_interval": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "graceful_timeout": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "heartbeat_interval": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "heartbeat_timeout": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "multi_accept": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "workers": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "job": {
+            "type": "object",
+            "required": [
+                "name",
+                "type",
+                "enabled",
+                "singleton",
+                "running"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "singleton": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "running": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "collector": {
+            "type": "object",
+            "required": [
+                "name",
+                "collection",
+                "type",
+                "singleton",
+                "scheduling"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "collection": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "singleton": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "scheduling": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "source": {
+                    "type": "string"
+                },
+                "input": {}
+            }
+        },
+        "rabbitmq": {
+            "type": "object",
+            "required": [
+                "name",
+                "host",
+                "port",
+                "user",
+                "password",
+                "timeout",
+                "vhost",
+                "tls",
+                "heartbeat",
+                "exchange",
+                "delivery_mode",
+                "scheduling",
+                "auto_connect"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65536
+                },
+                "user": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "timeout": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "vhost": {
+                    "type": "integer"
+                },
+                "tls": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "heartbeat": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "exchange": {
+                    "type": "string"
+                },
+                "delivery_mode": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "scheduling": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "auto_connect": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "webservice": {
+            "type": "object",
+            "required": [
+                "name",
+                "interface_mask",
+                "port",
+                "tls"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "interface_mask": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65536
+                },
+                "tls": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "ca": {
+                    "type": "string"
+                },
+                "cert": {
+                    "type": "string"
+                },
+                "ciphers": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "verify": {
+                    "type": "string"
+                }
+            }
+        },
+        "publisher": {
+            "type": "object",
+            "required": [
+                "name",
+                "connecting",
+                "connected",
+                "disconnecting",
+                "disconnected"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "connecting": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "connected": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "disconnecting": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "disconnected": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "event": {
+            "type": "object",
+            "required": [
+                "event_definition"
+            ],
+            "properties": {
+                "event_definition": {
+                    "type": "object",
+                    "required": [
+                        "datas",
+                        "collection"
+                    ],
+                    "properties": {
+                        "datas": {},
+                        "collection": {
+                            "type": "string"
+                        },
+                        "starting_time": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "ending_time": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "oKKO": {
+            "type": "object",
+            "required": [
+                "ok",
+                "ko"
+            ],
+            "properties": {
+                "ok": {
+                    "type": "array",
+                    "items": {}
+                },
+                "ko": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        },
+        "unexpectedError": {
+            "type": "string"
+        }
+    },
+    "parameters": {
+        "credentials": {
+            "name": "credentials",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/mainWebServicesCredentials"
+            }
+        },
+        "jobType": {
+            "name": "jobType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "jobName": {
+            "name": "jobName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "jobAction": {
+            "name": "jobAction",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "collectorName": {
+            "name": "collectorName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "rabbitmqName": {
+            "name": "rabbitmqName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "webServiceName": {
+            "name": "webServiceName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "publisherName": {
+            "name": "publisherName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "publisherAction": {
+            "name": "publisherAction",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        }
+    },
+    "responses": {
+        "oKKO": {
+            "description": "OK and KO messages",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "unexpectedError": {
+            "description": "Unexpected Error",
+            "schema": {
+                "$ref": "#/definitions/unexpectedError"
+            }
+        }
+    }
 }
