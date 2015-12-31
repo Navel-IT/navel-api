@@ -93,9 +93,11 @@
                     "main",
                     "credentials"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/credentials"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/credentials"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
@@ -120,7 +122,11 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
                     },
@@ -138,18 +144,27 @@
                 "tags": [
                     "job"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/jobType"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Job names by job type",
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -165,17 +180,23 @@
                 "tags": [
                     "job"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/jobType"
-                }, {
-                    "$ref": "#/parameters/jobName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Job",
                         "schema": {
                             "$ref": "#/definitions/job"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -191,16 +212,23 @@
                 "tags": [
                     "job"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/jobType"
-                }, {
-                    "$ref": "#/parameters/jobName"
-                }, {
-                    "$ref": "#/parameters/jobAction"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    },
+                    {
+                        "$ref": "#/parameters/jobAction"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -222,7 +250,11 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
                     },
@@ -256,15 +288,20 @@
                 "tags": [
                     "collector"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/collectorName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/collectorName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Collector",
                         "schema": {
                             "$ref": "#/definitions/collector"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -278,12 +315,17 @@
                 "tags": [
                     "collector"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/collectorName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/collectorName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -297,12 +339,17 @@
                 "tags": [
                     "collector"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/collectorName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/collectorName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -324,7 +371,11 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
                     },
@@ -358,15 +409,20 @@
                 "tags": [
                     "rabbitmq"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/rabbitmqName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rabbitmqName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "RabbitMQ",
                         "schema": {
                             "$ref": "#/definitions/rabbitmq"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -380,12 +436,17 @@
                 "tags": [
                     "rabbitmq"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/rabbitmqName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rabbitmqName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -399,12 +460,17 @@
                 "tags": [
                     "rabbitmq"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/rabbitmqName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rabbitmqName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -426,7 +492,11 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
                     },
@@ -444,15 +514,20 @@
                 "tags": [
                     "webservice"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/webServiceName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/webServiceName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Web service",
                         "schema": {
                             "$ref": "#/definitions/webservice"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -474,7 +549,11 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": "string"
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
                             }
                         }
                     },
@@ -492,15 +571,20 @@
                 "tags": [
                     "publisher"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/publisherName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Publisher",
                         "schema": {
                             "$ref": "#/definitions/publisher"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -516,15 +600,20 @@
                 "tags": [
                     "publisher"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/publisherName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Serialized event",
                         "schema": {
                             "$ref": "#/definitions/event"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -538,12 +627,17 @@
                 "tags": [
                     "publisher"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/publisherName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -557,12 +651,17 @@
                 "tags": [
                     "publisher"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/publisherName"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -578,14 +677,20 @@
                 "tags": [
                     "publisher"
                 ],
-                "parameters": [{
-                    "$ref": "#/parameters/publisherName"
-                }, {
-                    "$ref": "#/parameters/publisherAction"
-                }],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    },
+                    {
+                        "$ref": "#/parameters/publisherAction"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -599,10 +704,18 @@
             "type": "object",
             "properties": {
                 "version": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "api_version": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 }
             }
         },
@@ -636,10 +749,18 @@
             ],
             "properties": {
                 "definitions_from_file": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "collectors_exec_directory": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "maximum": {
                     "type": "integer",
@@ -664,7 +785,11 @@
             ],
             "properties": {
                 "definitions_from_file": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "maximum": {
                     "type": "integer",
@@ -685,7 +810,11 @@
             ],
             "properties": {
                 "definitions_from_file": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "credentials": {
                     "$ref": "#/definitions/mainWebServicesCredentials"
@@ -703,10 +832,18 @@
             ],
             "properties": {
                 "login": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "password": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 }
             }
         },
@@ -774,18 +911,32 @@
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "type": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "enabled": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
                 "singleton": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
@@ -802,20 +953,37 @@
                 "collection",
                 "type",
                 "singleton",
-                "scheduling"
+                "scheduling",
+                "source",
+                "input"
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "collection": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "type": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "singleton": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
@@ -824,7 +992,12 @@
                     "minimum": 0
                 },
                 "source": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "input": {}
             }
@@ -848,10 +1021,18 @@
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "host": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "port": {
                     "type": "integer",
@@ -859,20 +1040,35 @@
                     "maximum": 65536
                 },
                 "user": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "password": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "timeout": {
                     "type": "integer",
                     "minimum": 0
                 },
                 "vhost": {
-                    "type": "integer"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "tls": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
@@ -881,7 +1077,11 @@
                     "minimum": 0
                 },
                 "exchange": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "delivery_mode": {
                     "type": "integer",
@@ -892,7 +1092,10 @@
                     "minimum": 0
                 },
                 "auto_connect": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 }
@@ -904,14 +1107,27 @@
                 "name",
                 "interface_mask",
                 "port",
-                "tls"
+                "tls",
+                "ca",
+                "cert",
+                "ciphers",
+                "key",
+                "verify"
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "interface_mask": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "port": {
                     "type": "integer",
@@ -919,24 +1135,52 @@
                     "maximum": 65536
                 },
                 "tls": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
                 "ca": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "cert": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "ciphers": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "key": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "verify": {
-                    "type": "string"
+                    "type": [
+                        "null",
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 }
             }
         },
@@ -951,25 +1195,41 @@
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 },
                 "connecting": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
                 "connected": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
                 "disconnecting": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 },
                 "disconnected": {
-                    "type": "integer",
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
                     "minimum": 0,
                     "maximum": 1
                 }
@@ -990,7 +1250,11 @@
                     "properties": {
                         "datas": {},
                         "collection": {
-                            "type": "string"
+                            "type": [
+                                "string",
+                                "integer",
+                                "number"
+                            ]
                         },
                         "starting_time": {
                             "type": "integer",
@@ -1003,7 +1267,11 @@
                     }
                 },
                 "status": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 }
             }
         },
@@ -1087,6 +1355,12 @@
         }
     },
     "responses": {
+        "resourceCouldNotBeFound": {
+            "description": "This resource could not be found",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
         "oKKO": {
             "description": "OK and KO messages",
             "schema": {
