@@ -20,8 +20,7 @@
         "application/json"
     ],
     "produces": [
-        "application/json",
-        "text/html"
+        "application/json"
     ],
     "paths": {
         "/status": {
