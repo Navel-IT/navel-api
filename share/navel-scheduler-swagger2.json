@@ -102,6 +102,9 @@
                     "200": {
                         "$ref": "#/responses/oKKO"
                     },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
                     }
@@ -271,8 +274,14 @@
                     "collector"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
+                    "409": {
+                      "$ref": "#/responses/resourceAlreadyExists"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -324,6 +333,9 @@
                     "200": {
                         "$ref": "#/responses/oKKO"
                     },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
                     },
@@ -347,6 +359,9 @@
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -392,8 +407,14 @@
                     "rabbitmq"
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
+                    "409": {
+                      "$ref": "#/responses/resourceAlreadyExists"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -445,6 +466,9 @@
                     "200": {
                         "$ref": "#/responses/oKKO"
                     },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
                     },
@@ -468,6 +492,9 @@
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -621,7 +648,7 @@
                 }
             },
             "post": {
-                "summary": "Create an event ans push it to the queue of this publisher",
+                "summary": "Create an event and push it to the queue of this publisher",
                 "operationId": "push_event_to_a_publisher",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
@@ -633,8 +660,11 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -1355,14 +1385,26 @@
         }
     },
     "responses": {
+        "oKKO": {
+            "description": "OK and KO messages",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "badRequest": {
+            "description": "Incorrect payload",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
         "resourceCouldNotBeFound": {
             "description": "This resource could not be found",
             "schema": {
                 "$ref": "#/definitions/oKKO"
             }
         },
-        "oKKO": {
-            "description": "OK and KO messages",
+        "resourceAlreadyExists": {
+            "description": "This resource already exists",
             "schema": {
                 "$ref": "#/definitions/oKKO"
             }
@@ -1370,7 +1412,7 @@
         "unexpectedError": {
             "description": "Unexpected Error",
             "schema": {
-                "$ref": "#/definitions/unexpectedError"
+                "$ref": "#/definitions/oKKO"
             }
         }
     }
