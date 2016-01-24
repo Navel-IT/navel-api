@@ -635,7 +635,14 @@
                     "200": {
                         "description": "Serialized event",
                         "schema": {
-                            "$ref": "#/definitions/event"
+                            "type": "array",
+                            "items": {
+                                "type": [
+                                    "string",
+                                    "integer",
+                                    "number"
+                                ]
+                            }
                         }
                     },
                     "404": {
@@ -1284,46 +1291,6 @@
                     ],
                     "minimum": 0,
                     "maximum": 1
-                }
-            }
-        },
-        "event": {
-            "type": "object",
-            "required": [
-                "event_definition"
-            ],
-            "properties": {
-                "event_definition": {
-                    "type": "object",
-                    "required": [
-                        "datas",
-                        "collection"
-                    ],
-                    "properties": {
-                        "datas": {},
-                        "collection": {
-                            "type": [
-                                "string",
-                                "integer",
-                                "number"
-                            ]
-                        },
-                        "starting_time": {
-                            "type": "integer",
-                            "minimum": 0
-                        },
-                        "ending_time": {
-                            "type": "integer",
-                            "minimum": 0
-                        }
-                    }
-                },
-                "status": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
                 }
             }
         },
