@@ -698,10 +698,10 @@
                 }
             }
         },
-        "/publishers/{publisherName}/{publisherAction}": {
+        "/publishers/{publisherName}/connect": {
             "put": {
-                "summary": "Connect or disconnect this publisher",
-                "operationId": "connect_or_disconnect_publisher",
+                "summary": "Connect this publisher",
+                "operationId": "connect_publisher",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
                 "tags": [
                     "publisher"
@@ -709,9 +709,32 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/publisherName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
                     },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers/{publisherName}/disconnect": {
+            "put": {
+                "summary": "Disconnect this publisher",
+                "operationId": "disconnect_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [
                     {
-                        "$ref": "#/parameters/publisherAction"
+                        "$ref": "#/parameters/publisherName"
                     }
                 ],
                 "responses": {
@@ -1372,12 +1395,6 @@
         },
         "publisherName": {
             "name": "publisherName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "publisherAction": {
-            "name": "publisherAction",
             "in": "path",
             "required": true,
             "type": "string"
