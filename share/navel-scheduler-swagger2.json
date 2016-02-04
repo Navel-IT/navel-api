@@ -371,139 +371,6 @@
                 }
             }
         },
-        "/rabbitmq": {
-            "get": {
-                "summary": "List RabbitMQ names",
-                "operationId": "list_rabbitmq",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-                "tags": [
-                    "rabbitmq"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "RabbitMQ names",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
-                            }
-                        }
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a RabbitMQ and his publisher",
-                "operationId": "new_rabbitmq",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-                "tags": [
-                    "rabbitmq"
-                ],
-                "responses": {
-                    "201": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                      "$ref": "#/responses/badRequest"
-                    },
-                    "409": {
-                      "$ref": "#/responses/resourceAlreadyExists"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/rabbitmq/{rabbitmqName}": {
-            "get": {
-                "summary": "Show the properties of a RabbitMQ",
-                "operationId": "show_rabbitmq",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-                "tags": [
-                    "rabbitmq"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/rabbitmqName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "RabbitMQ",
-                        "schema": {
-                            "$ref": "#/definitions/rabbitmq"
-                        }
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Modify a RabbitMQ",
-                "operationId": "modify_rabbitmq",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-                "tags": [
-                    "rabbitmq"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/rabbitmqName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                      "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete a RabbitMQ",
-                "operationId": "delete_rabbitmq",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::RabbitMQ",
-                "tags": [
-                    "rabbitmq"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/rabbitmqName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                      "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
         "/webservices/": {
             "get": {
                 "summary": "List webservice names",
@@ -587,6 +454,28 @@
                         "$ref": "#/responses/unexpectedError"
                     }
                 }
+            },
+            "post": {
+                "summary": "Create a publisher",
+                "operationId": "new_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
+                    "409": {
+                      "$ref": "#/responses/resourceAlreadyExists"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
             }
         },
         "/publishers/{publisherName}": {
@@ -616,9 +505,92 @@
                         "$ref": "#/responses/unexpectedError"
                     }
                 }
+            },
+            "put": {
+                "summary": "Modify a publisher",
+                "operationId": "modify_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a publisher",
+                "operationId": "delete_publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                      "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
             }
         },
-        "/publishers/{publisherName}/events": {
+        "/publishers/{publisherName}/runtime" : {
+            "get": {
+                "summary": "Show the properties of the runtime object of a publisher",
+                "operationId": "show_publisher_runtime",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "tags": [
+                    "publisher"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisherName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Publisher runtime",
+                        "schema": {
+                            "$ref": "#/definitions/publisher_runtime"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/publishers/{publisherName}/runtime/events": {
             "get": {
                 "summary": "List a publisher's serialized events",
                 "operationId": "list_events_of_a_publisher",
@@ -633,7 +605,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Serialized event",
+                        "description": "Serialized events",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -705,7 +677,7 @@
                 }
             }
         },
-        "/publishers/{publisherName}/connect": {
+        "/publishers/{publisherName}/runtime/connect": {
             "put": {
                 "summary": "Connect this publisher",
                 "operationId": "connect_publisher",
@@ -731,7 +703,7 @@
                 }
             }
         },
-        "/publishers/{publisherName}/disconnect": {
+        "/publishers/{publisherName}/runtime/disconnect": {
             "put": {
                 "summary": "Disconnect this publisher",
                 "operationId": "disconnect_publisher",
@@ -782,15 +754,15 @@
             "type": "object",
             "required": [
                 "collectors",
-                "rabbitmq",
+                "publishers",
                 "webservices"
             ],
             "properties": {
                 "collectors": {
                     "$ref": "#/definitions/mainCollectors"
                 },
-                "rabbitmq": {
-                    "$ref": "#/definitions/mainRabbitMQ"
+                "publishers": {
+                    "$ref": "#/definitions/mainPublisher"
                 },
                 "webservices": {
                     "$ref": "#/definitions/mainWebServices"
@@ -835,7 +807,7 @@
                 }
             }
         },
-        "mainRabbitMQ": {
+        "mainPublisher": {
             "type": "object",
             "required": [
                 "definitions_from_file",
@@ -1061,105 +1033,6 @@
                 "input": {}
             }
         },
-        "rabbitmq": {
-            "type": "object",
-            "required": [
-                "name",
-                "host",
-                "port",
-                "user",
-                "password",
-                "timeout",
-                "vhost",
-                "tls",
-                "heartbeat",
-                "exchange",
-                "delivery_mode",
-                "scheduling",
-                "auto_connect"
-            ],
-            "properties": {
-                "name": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "host": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "port": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 65536
-                },
-                "user": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "password": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "timeout": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "vhost": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "tls": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "heartbeat": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "exchange": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "delivery_mode": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "scheduling": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "auto_connect": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                }
-            }
-        },
         "webservice": {
             "type": "object",
             "required": [
@@ -1247,10 +1120,10 @@
             "type": "object",
             "required": [
                 "name",
-                "connecting",
-                "connected",
-                "disconnecting",
-                "disconnected"
+                "backend",
+                "backend_input",
+                "scheduling",
+                "auto_connect"
             ],
             "properties": {
                 "name": {
@@ -1259,6 +1132,50 @@
                         "integer",
                         "number"
                     ]
+                },
+                "backend": {
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
+                },
+                "backend_input": {},
+                "scheduling": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "auto_connect": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "publisher_runtime": {
+            "type": "object",
+            "required": [
+                "name",
+                "seems_connectable"
+            ],
+            "properties": {
+                "name": {
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
+                },
+                "seems_connectable" : {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
                 },
                 "connecting": {
                     "type": [
@@ -1348,12 +1265,6 @@
             "required": true,
             "type": "string"
         },
-        "rabbitmqName": {
-            "name": "rabbitmqName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
         "webServiceName": {
             "name": "webServiceName",
             "in": "path",
@@ -1400,4 +1311,3 @@
         }
     }
 }
-

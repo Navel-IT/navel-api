@@ -59,5 +59,3 @@ use File::ShareDir::Install 'postamble';
 #-> END
 
 __END__
-
-
