@@ -7,13 +7,9 @@
 
 package Navel::Base::API::Swagger2 0.1;
 
-use strict;
-use warnings;
+use Navel::Base;
 
-use parent qw/
-    Navel::Base
-    Navel::Base::API
-/;
+use parent 'Navel::Base::API';
 
 use Swagger2;
 

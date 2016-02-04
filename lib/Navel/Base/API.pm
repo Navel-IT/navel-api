@@ -7,10 +7,7 @@
 
 package Navel::Base::API 0.1;
 
-use strict;
-use warnings;
-
-use parent 'Navel::Base';
+use Navel::Base;
 
 our $DIST_DIR = 'Navel-API';
 

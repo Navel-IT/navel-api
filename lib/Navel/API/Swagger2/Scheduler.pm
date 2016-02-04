@@ -7,13 +7,9 @@
 
 package Navel::API::Swagger2::Scheduler 0.1;
 
-use strict;
-use warnings;
+use Navel::Base;
 
-use parent qw/
-    Navel::Base
-    Navel::Base::API::Swagger2
-/;
+use parent 'Navel::Base::API::Swagger2';
 
 our $SPEC_FILE = 'navel-scheduler-swagger2.json';
 
