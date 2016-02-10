@@ -206,10 +206,10 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/{jobAction}": {
+        "/jobs/{jobType}/{jobName}/enable": {
             "put": {
-                "summary": "Do an action on a job",
-                "operationId": "action_on_job_by_type_and_name",
+                "summary": "Enable a job",
+                "operationId": "enable_job_by_type_and_name",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
@@ -220,9 +220,64 @@
                     },
                     {
                         "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/disable": {
+            "put": {
+                "summary": "Disable a job",
+                "operationId": "disable_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
                     },
                     {
-                        "$ref": "#/parameters/jobAction"
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/execute": {
+            "put": {
+                "summary": "Execute a job",
+                "operationId": "execute_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
                     }
                 ],
                 "responses": {
