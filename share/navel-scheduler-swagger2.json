@@ -371,7 +371,7 @@
                 }
             }
         },
-        "/webservices/": {
+        "/webservices": {
             "get": {
                 "summary": "List webservice names",
                 "operationId": "list_webservices",
