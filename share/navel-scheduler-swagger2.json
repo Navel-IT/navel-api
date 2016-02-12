@@ -296,7 +296,7 @@
         "/collectors": {
             "get": {
                 "summary": "List collector names",
-                "operationId": "list_collector",
+                "operationId": "list_collectors",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
                 "tags": [
                     "collector"
