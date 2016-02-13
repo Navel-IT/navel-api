@@ -388,7 +388,7 @@
                         "$ref": "#/parameters/collectorName"
                     },
                     {
-                        "$ref": "#/parameters/JSONBody"
+                        "$ref": "#/parameters/modifiedProperties"
                     }
                 ],
                 "responses": {
@@ -586,7 +586,7 @@
                         "$ref": "#/parameters/publisherName"
                     },
                     {
-                        "$ref": "#/parameters/JSONBody"
+                        "$ref": "#/parameters/modifiedProperties"
                     }
                 ],
                 "responses": {
@@ -1373,11 +1373,14 @@
                 "$ref": "#/definitions/publisherEvent"
             }
         },
-        "JSONBody": {
-            "name": "JSONBody",
+        "modifiedProperties": {
+            "name": "modifiedProperties",
             "in": "body",
             "required": true,
             "schema": {
+                "type": "object",
+                "properties": {
+                }
             }
         },
         "jobType": {
