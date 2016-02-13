@@ -327,6 +327,11 @@
                 "tags": [
                     "collector"
                 ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/collector"
+                    }
+                ],
                 "responses": {
                     "201": {
                         "$ref": "#/responses/oKKO"
@@ -381,6 +386,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/collectorName"
+                    },
+                    {
+                        "$ref": "#/parameters/JSONBody"
                     }
                 ],
                 "responses": {
@@ -517,6 +525,11 @@
                 "tags": [
                     "publisher"
                 ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/publisher"
+                    }
+                ],
                 "responses": {
                     "201": {
                         "$ref": "#/responses/oKKO"
@@ -571,6 +584,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/publisherName"
+                    },
+                    {
+                        "$ref": "#/parameters/JSONBody"
                     }
                 ],
                 "responses": {
@@ -690,6 +706,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/publisherName"
+                    },
+                    {
+                        "$ref": "#/parameters/publisherEvent"
                     }
                 ],
                 "responses": {
@@ -1271,6 +1290,38 @@
                 }
             }
         },
+        "publisherEvent": {
+            "type": "object",
+            "required": [
+                "event_definition"
+            ],
+            "properties": {
+                "event_definition" : {
+                    "type": "object",
+                    "required": [
+                        "collection",
+                        "datas"
+                    ],
+                    "properties": {
+                        "collection": {
+                            "type": "string"
+                        },
+                        "datas": {},
+                        "starting_time" : {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "ending_time" : {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "status" : {
+                    "type": "string"
+                }
+            }
+        },
         "oKKO": {
             "type": "object",
             "required": [
@@ -1287,9 +1338,6 @@
                     "items": {}
                 }
             }
-        },
-        "unexpectedError": {
-            "type": "string"
         }
     },
     "parameters": {
@@ -1301,6 +1349,37 @@
                 "$ref": "#/definitions/mainWebServicesCredentials"
             }
         },
+        "collector": {
+            "name": "collector",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/collector"
+            }
+        },
+        "publisher": {
+            "name": "publisher",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/publisher"
+            }
+        },
+        "publisherEvent": {
+            "name": "publisherEvent",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/publisherEvent"
+            }
+        },
+        "JSONBody": {
+            "name": "JSONBody",
+            "in": "body",
+            "required": true,
+            "schema": {
+            }
+        },
         "jobType": {
             "name": "jobType",
             "in": "path",
@@ -1309,12 +1388,6 @@
         },
         "jobName": {
             "name": "jobName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "jobAction": {
-            "name": "jobAction",
             "in": "path",
             "required": true,
             "type": "string"
