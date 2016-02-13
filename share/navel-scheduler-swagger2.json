@@ -141,7 +141,7 @@
         "/jobs/{jobType}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "list_job_by_type",
+                "operationId": "list_jobs_by_type",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
                 "tags": [
                     "job"
