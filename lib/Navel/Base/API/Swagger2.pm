@@ -11,7 +11,7 @@ use Navel::Base;
 
 use parent 'Navel::Base::API';
 
-use Swagger2;
+use Swagger2 0.73;
 
 use File::ShareDir 'dist_dir';
 
