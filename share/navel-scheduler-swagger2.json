@@ -1094,7 +1094,7 @@
                 },
                 "scheduling": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 5
                 },
                 "source": {
                     "type": [
@@ -1138,7 +1138,7 @@
                 "port": {
                     "type": "integer",
                     "minimum": 0,
-                    "maximum": 65536
+                    "maximum": 65535
                 },
                 "tls": {
                     "type": [
@@ -1218,7 +1218,7 @@
                 "backend_input": {},
                 "scheduling": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 5
                 },
                 "auto_clean" : {
                     "type": "integer",
