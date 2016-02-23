@@ -1304,7 +1304,11 @@
                     ],
                     "properties": {
                         "collection": {
-                            "type": "string"
+                            "type": [
+                                "string",
+                                "integer",
+                                "number"
+                            ]
                         },
                         "datas": {},
                         "starting_time" : {
@@ -1318,7 +1322,11 @@
                     }
                 },
                 "status" : {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
                 }
             }
         },
