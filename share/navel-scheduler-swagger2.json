@@ -27,7 +27,7 @@
             "get": {
                 "summary": "Show product status",
                 "operationId": "show_status",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Product",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Product",
                 "tags": [
                     "status"
                 ],
@@ -48,7 +48,7 @@
             "put": {
                 "summary": "Save all configuration",
                 "operationId": "save_all_configuration",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Backup",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Backup",
                 "tags": [
                     "saveConfiguration"
                 ],
@@ -66,7 +66,7 @@
             "get": {
                 "summary": "Show main configuration",
                 "operationId": "show_main",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Main",
                 "tags": [
                     "main"
                 ],
@@ -87,7 +87,7 @@
             "put": {
                 "summary": "Modify credentials",
                 "operationId": "modify_webservices_credentials",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Main",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Main",
                 "tags": [
                     "main",
                     "credentials"
@@ -114,7 +114,7 @@
             "get": {
                 "summary": "List job types",
                 "operationId": "list_job_types",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -142,7 +142,7 @@
             "get": {
                 "summary": "List job names by job type",
                 "operationId": "list_jobs_by_type",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -178,7 +178,7 @@
             "get": {
                 "summary": "Show the properties of a job",
                 "operationId": "show_job_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -210,7 +210,7 @@
             "put": {
                 "summary": "Enable a job",
                 "operationId": "enable_job_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -239,7 +239,7 @@
             "put": {
                 "summary": "Disable a job",
                 "operationId": "disable_job_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -268,7 +268,7 @@
             "put": {
                 "summary": "Execute a job",
                 "operationId": "execute_job_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Job",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
@@ -297,7 +297,7 @@
             "get": {
                 "summary": "List collector names",
                 "operationId": "list_collectors",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -323,7 +323,7 @@
             "post": {
                 "summary": "Create a collector",
                 "operationId": "new_collector",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -352,7 +352,7 @@
             "get": {
                 "summary": "Show the properties of a collector",
                 "operationId": "show_collector",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -379,7 +379,7 @@
             "put": {
                 "summary": "Modify a collector",
                 "operationId": "modify_collector",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -409,7 +409,7 @@
             "delete": {
                 "summary": "Delete a collector",
                 "operationId": "delete_collector",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Collector",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
@@ -438,7 +438,7 @@
             "get": {
                 "summary": "List webservice names",
                 "operationId": "list_webservices",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::WebService",
                 "tags": [
                     "webservice"
                 ],
@@ -466,7 +466,7 @@
             "get": {
                 "summary": "Show the properties of a web service",
                 "operationId": "show_webservice",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::WebService",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::WebService",
                 "tags": [
                     "webservice"
                 ],
@@ -495,7 +495,7 @@
             "get": {
                 "summary": "List publisher names",
                 "operationId": "list_publishers",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -521,7 +521,7 @@
             "post": {
                 "summary": "Create a publisher",
                 "operationId": "new_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -550,7 +550,7 @@
             "get": {
                 "summary": "Show the properties of a publisher",
                 "operationId": "show_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -577,7 +577,7 @@
             "put": {
                 "summary": "Modify a publisher",
                 "operationId": "modify_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -607,7 +607,7 @@
             "delete": {
                 "summary": "Delete a publisher",
                 "operationId": "delete_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -636,7 +636,7 @@
             "get": {
                 "summary": "Show the properties of the runtime object of a publisher",
                 "operationId": "show_publisher_runtime",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -665,7 +665,7 @@
             "get": {
                 "summary": "List a publisher's serialized events",
                 "operationId": "list_events_of_a_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -699,7 +699,7 @@
             "post": {
                 "summary": "Create an event and push it to the queue of this publisher",
                 "operationId": "push_event_to_a_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -729,7 +729,7 @@
             "delete": {
                 "summary": "Delete all events",
                 "operationId": "delete_all_events_from_a_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -755,7 +755,7 @@
             "put": {
                 "summary": "Connect this publisher",
                 "operationId": "connect_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -781,7 +781,7 @@
             "put": {
                 "summary": "Disconnect this publisher",
                 "operationId": "disconnect_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Publisher",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
                 ],
@@ -807,6 +807,7 @@
     "definitions": {
         "productStatus": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "version": {
                     "type": [
@@ -826,6 +827,7 @@
         },
         "main": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "collectors",
                 "publishers",
@@ -845,6 +847,7 @@
         },
         "mainCollectors": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "definitions_from_file",
                 "collectors_exec_directory",
@@ -883,6 +886,7 @@
         },
         "mainPublisher": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "definitions_from_file",
                 "maximum",
@@ -908,6 +912,7 @@
         },
         "mainWebServices": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "definitions_from_file",
                 "credentials",
@@ -931,6 +936,7 @@
         },
         "mainWebServicesCredentials": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "login",
                 "password"
@@ -954,59 +960,30 @@
         },
         "mainWebServicesMojoServer": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "reverse_proxy": {
                     "type": "integer",
-                    "minimum": 0
+                    "minimum": 0,
+                    "maximum": 1
                 },
                 "backlog": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "integer"
                 },
                 "inactivity_timeout": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "integer"
                 },
                 "max_clients": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "integer"
                 },
                 "max_requests": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "accepts": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "accept_interval": {
-                    "type": "number",
-                    "minimum": 0
-                },
-                "graceful_timeout": {
-                    "type": "number",
-                    "minimum": 0
-                },
-                "heartbeat_interval": {
-                    "type": "number",
-                    "minimum": 0
-                },
-                "heartbeat_timeout": {
-                    "type": "number",
-                    "minimum": 0
-                },
-                "multi_accept": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "workers": {
-                    "type": "integer",
-                    "minimum": 0
+                    "type": "integer"
                 }
             }
         },
         "job": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "name",
                 "type",
@@ -1053,6 +1030,7 @@
         },
         "collector": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "name",
                 "collection",
@@ -1109,6 +1087,7 @@
         },
         "webservice": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "name",
                 "interface_mask",
@@ -1192,6 +1171,7 @@
         },
         "publisher": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "name",
                 "backend",
@@ -1236,6 +1216,7 @@
         },
         "publisher_runtime": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "name",
                 "seems_connectable"
@@ -1292,12 +1273,14 @@
         },
         "publisherEvent": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "event_definition"
             ],
             "properties": {
                 "event_definition" : {
                     "type": "object",
+                    "additionalProperties": false,
                     "required": [
                         "collection",
                         "datas"
@@ -1332,6 +1315,7 @@
         },
         "oKKO": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
                 "ok",
                 "ko"
