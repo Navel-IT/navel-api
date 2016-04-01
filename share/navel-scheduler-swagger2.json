@@ -1035,6 +1035,7 @@
                 "name",
                 "collection",
                 "type",
+                "async",
                 "singleton",
                 "scheduling",
                 "source",
@@ -1061,6 +1062,14 @@
                         "integer",
                         "number"
                     ]
+                },
+                "async" : {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
                 },
                 "singleton": {
                     "type": [
@@ -1283,7 +1292,7 @@
                     "additionalProperties": false,
                     "required": [
                         "collection",
-                        "datas"
+                        "data"
                     ],
                     "properties": {
                         "collection": {
@@ -1293,7 +1302,7 @@
                                 "number"
                             ]
                         },
-                        "datas": {},
+                        "data": {},
                         "starting_time" : {
                             "type": "integer",
                             "minimum": 0
