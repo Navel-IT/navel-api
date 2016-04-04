@@ -1284,41 +1284,33 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "event_definition"
+                "collection",
+                "status",
+                "data"
             ],
             "properties": {
-                "event_definition" : {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": [
-                        "collection",
-                        "data"
-                    ],
-                    "properties": {
-                        "collection": {
-                            "type": [
-                                "string",
-                                "integer",
-                                "number"
-                            ]
-                        },
-                        "data": {},
-                        "starting_time" : {
-                            "type": "integer",
-                            "minimum": 0
-                        },
-                        "ending_time" : {
-                            "type": "integer",
-                            "minimum": 0
-                        }
-                    }
-                },
-                "status" : {
+                "collection": {
                     "type": [
                         "string",
                         "integer",
                         "number"
                     ]
+                },
+                "status" : {
+                    "type" : [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
+                },
+                "data": {},
+                "starting_time" : {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "ending_time" : {
+                    "type": "integer",
+                    "minimum": 0
                 }
             }
         },
