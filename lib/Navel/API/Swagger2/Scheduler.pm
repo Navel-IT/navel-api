@@ -11,12 +11,16 @@ use Navel::Base;
 
 use parent 'Navel::Base::API::Swagger2';
 
-our $SPEC_FILE = 'navel-scheduler-swagger2.json';
+our $SPEC_FILENAME = 'navel-scheduler-swagger2.json';
 
 #-> methods
 
+sub spec_file_location {
+    shift->SUPER::spec_file_location($SPEC_FILENAME);
+}
+
 sub new {
-    shift->SUPER::new($SPEC_FILE);
+    shift->SUPER::new($SPEC_FILENAME);
 }
 
 # sub AUTOLOAD {}

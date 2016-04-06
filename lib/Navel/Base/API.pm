@@ -9,7 +9,7 @@ package Navel::Base::API 0.1;
 
 use Navel::Base;
 
-our $DIST_DIR = 'Navel-API';
+our $DIST_DIRNAME = 'Navel-API';
 
 #-> methods
 

@@ -15,13 +15,23 @@ use Swagger2 0.73;
 
 use File::ShareDir 'dist_dir';
 
+use Navel::Utils 'croak';
+
 #-> methods
+
+sub spec_file_location {
+    my ($class, $spec_filename) = @_;
+
+    croak('spec_filename must be defined') unless defined $spec_filename;
+
+    dist_dir($Navel::Base::API::DIST_DIRNAME) . '/' . $spec_filename;
+}
 
 sub new {
     my $class = shift;
 
     Swagger2->new()->load(
-        dist_dir($Navel::Base::API::DIST_DIR) . '/' . shift
+        $class->spec_file_location(shift)
     );
 }
 
