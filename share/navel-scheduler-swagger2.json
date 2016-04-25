@@ -1187,6 +1187,7 @@
                 "backend_input",
                 "scheduling",
                 "auto_clean",
+                "connectable",
                 "auto_connect"
             ],
             "properties": {
@@ -1212,6 +1213,14 @@
                 "auto_clean" : {
                     "type": "integer",
                     "minimum": 0
+                },
+                "connectable" : {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
                 },
                 "auto_connect": {
                     "type": [
