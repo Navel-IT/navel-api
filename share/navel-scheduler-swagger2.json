@@ -102,7 +102,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -337,10 +337,10 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "409": {
-                      "$ref": "#/responses/resourceAlreadyExists"
+                        "$ref": "#/responses/resourceAlreadyExists"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -396,7 +396,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -423,7 +423,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -535,10 +535,10 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "409": {
-                      "$ref": "#/responses/resourceAlreadyExists"
+                        "$ref": "#/responses/resourceAlreadyExists"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -594,7 +594,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -632,10 +632,10 @@
                 }
             }
         },
-        "/publishers/{publisherName}/runtime" : {
+        "/publishers/{publisherName}/connection_status" : {
             "get": {
-                "summary": "Show the properties of the runtime object of a publisher",
-                "operationId": "show_publisher_runtime",
+                "summary": "Show the connection status of a connectable publisher",
+                "operationId": "show_publisher_connection_status",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
@@ -647,9 +647,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Publisher runtime",
+                        "description": "Publisher connection status",
                         "schema": {
-                            "$ref": "#/definitions/publisher_runtime"
+                            "$ref": "#/definitions/publisher_connection_status"
                         }
                     },
                     "404": {
@@ -661,7 +661,7 @@
                 }
             }
         },
-        "/publishers/{publisherName}/runtime/events": {
+        "/publishers/{publisherName}/events": {
             "get": {
                 "summary": "List a publisher's serialized events",
                 "operationId": "list_events_of_a_publisher",
@@ -687,6 +687,9 @@
                                 ]
                             }
                         }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -716,7 +719,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -742,6 +745,9 @@
                     "200": {
                         "$ref": "#/responses/oKKO"
                     },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
                     },
@@ -751,7 +757,7 @@
                 }
             }
         },
-        "/publishers/{publisherName}/runtime/connect": {
+        "/publishers/{publisherName}/connect": {
             "put": {
                 "summary": "Connect this publisher",
                 "operationId": "connect_publisher",
@@ -768,6 +774,9 @@
                     "200": {
                         "$ref": "#/responses/oKKO"
                     },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
                     },
@@ -777,7 +786,7 @@
                 }
             }
         },
-        "/publishers/{publisherName}/runtime/disconnect": {
+        "/publishers/{publisherName}/disconnect": {
             "put": {
                 "summary": "Disconnect this publisher",
                 "operationId": "disconnect_publisher",
@@ -793,6 +802,9 @@
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -1036,7 +1048,6 @@
                 "collection",
                 "type",
                 "async",
-                "singleton",
                 "scheduling",
                 "source",
                 "input"
@@ -1064,14 +1075,6 @@
                     ]
                 },
                 "async" : {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "singleton": {
                     "type": [
                         "integer",
                         "boolean"
@@ -1232,12 +1235,12 @@
                 }
             }
         },
-        "publisher_runtime": {
+        "publisher_connection_status": {
             "type": "object",
             "additionalProperties": false,
             "required": [
                 "name",
-                "seems_connectable"
+                "connectable"
             ],
             "properties": {
                 "name": {
@@ -1247,7 +1250,7 @@
                         "number"
                     ]
                 },
-                "seems_connectable" : {
+                "connectable" : {
                     "type": [
                         "integer",
                         "boolean"
@@ -1424,7 +1427,7 @@
             }
         },
         "badRequest": {
-            "description": "Incorrect payload",
+            "description": "Incorrect request",
             "schema": {
                 "$ref": "#/definitions/oKKO"
             }
