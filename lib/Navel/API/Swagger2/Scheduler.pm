@@ -11,6 +11,8 @@ use Navel::Base;
 
 use parent 'Navel::Base::API::Swagger2';
 
+#-> class variables
+
 our $SPEC_FILENAME = 'navel-scheduler-swagger2.json';
 
 #-> methods

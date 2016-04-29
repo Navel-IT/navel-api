@@ -9,6 +9,8 @@ package Navel::Base::API 0.1;
 
 use Navel::Base;
 
+#-> class variables
+
 our $DIST_DIRNAME = 'Navel-API';
 
 #-> methods
