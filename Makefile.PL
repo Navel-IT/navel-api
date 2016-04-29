@@ -39,7 +39,7 @@ WriteMakefile(
     MIN_PERL_VERSION => $min_perl_version,
     PREREQ_PM => {
         'Navel::Base' => 0,
-        'Swagger2' => 0.73,
+        'Swagger2' => 0.77,
         'File::ShareDir' => 0
     },
     TEST_REQUIRES => {
