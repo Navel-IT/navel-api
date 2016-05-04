@@ -8,7 +8,8 @@
             "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
         },
         "license": {
-            "name": "GNU GPL v3"
+            "name": "Apache License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
     "basePath": "/api",

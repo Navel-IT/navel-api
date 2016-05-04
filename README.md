@@ -15,3 +15,13 @@ Status
 
 [![Build Status](https://travis-ci.org/Navel-IT/navel-api-blueprints.svg?branch=devel)](https://travis-ci.org/Navel-IT/navel-api-blueprints?branch=devel)
 [![Coverage Status](https://coveralls.io/repos/github/Navel-IT/navel-api-blueprints/badge.svg?branch=devel)](https://coveralls.io/github/Navel-IT/navel-api-blueprints?branch=devel)
+
+Copyright
+---------
+
+Copyright (C) 2015 Yoann Le Garff, Nicolas Boquet and Yann Le Bras
+
+License
+-------
+
+navel-api-blueprints is licensed under the Apache License, Version 2.0
