@@ -664,8 +664,8 @@
         },
         "/publishers/{publisherName}/events": {
             "get": {
-                "summary": "List a publisher's serialized events",
-                "operationId": "list_events_of_a_publisher",
+                "summary": "Show the amount of events in a publisher's queue",
+                "operationId": "show_publisher_amount_of_events",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
                 "tags": [
                     "publisher"
@@ -677,15 +677,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Serialized events",
+                        "description": "Amount of events in queue",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
+                            "type": "object",
+                            "required": [
+                                "amount_of_events_in_queue"
+                            ],
+                            "properties": {
+                                "amount_of_events_in_queue": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
                             }
                         }
                     },
