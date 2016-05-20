@@ -1194,7 +1194,8 @@
                 "scheduling",
                 "auto_clean",
                 "connectable",
-                "auto_connect"
+                "auto_connect",
+                "except_collections"
             ],
             "properties": {
                 "name": {
@@ -1235,6 +1236,16 @@
                     ],
                     "minimum": 0,
                     "maximum": 1
+                },
+                "except_collections": {
+                    "type": "array",
+                    "items": {
+                        "type": [
+                            "string",
+                            "integer",
+                            "number"
+                        ]
+                    }
                 }
             }
         },
