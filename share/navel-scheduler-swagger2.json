@@ -865,20 +865,11 @@
             "additionalProperties": false,
             "required": [
                 "definitions_from_file",
-                "collectors_exec_directory",
                 "maximum",
-                "maximum_simultaneous_exec",
-                "execution_timeout"
+                "maximum_simultaneous_exec"
             ],
             "properties": {
                 "definitions_from_file": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "collectors_exec_directory": {
                     "type": [
                         "string",
                         "integer",
@@ -890,10 +881,6 @@
                     "minimum": 0
                 },
                 "maximum_simultaneous_exec": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "execution_timeout": {
                     "type": "integer",
                     "minimum": 0
                 }
@@ -1049,11 +1036,11 @@
             "required": [
                 "name",
                 "collection",
-                "type",
                 "async",
                 "scheduling",
-                "source",
-                "input"
+                "execution_timeout",
+                "backend",
+                "backend_input"
             ],
             "properties": {
                 "name": {
@@ -1064,13 +1051,6 @@
                     ]
                 },
                 "collection": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "type": {
                     "type": [
                         "string",
                         "integer",
@@ -1089,7 +1069,11 @@
                     "type": "integer",
                     "minimum": 5
                 },
-                "source": {
+                "execution_timeout": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "backend": {
                     "type": [
                         "null",
                         "string",
@@ -1097,7 +1081,7 @@
                         "number"
                     ]
                 },
-                "input": {}
+                "backend_input": {}
             }
         },
         "webservice": {
