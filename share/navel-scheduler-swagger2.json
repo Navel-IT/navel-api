@@ -1295,19 +1295,11 @@
             "additionalProperties": false,
             "required": [
                 "collection",
-                "status",
                 "data"
             ],
             "properties": {
                 "collection": {
                     "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "status" : {
-                    "type" : [
                         "string",
                         "integer",
                         "number"
