@@ -865,8 +865,7 @@
             "additionalProperties": false,
             "required": [
                 "definitions_from_file",
-                "maximum",
-                "maximum_simultaneous_exec"
+                "maximum"
             ],
             "properties": {
                 "definitions_from_file": {
@@ -877,10 +876,6 @@
                     ]
                 },
                 "maximum": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "maximum_simultaneous_exec": {
                     "type": "integer",
                     "minimum": 0
                 }
@@ -891,8 +886,7 @@
             "additionalProperties": false,
             "required": [
                 "definitions_from_file",
-                "maximum",
-                "maximum_simultaneous_exec"
+                "maximum"
             ],
             "properties": {
                 "definitions_from_file": {
@@ -903,10 +897,6 @@
                     ]
                 },
                 "maximum": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "maximum_simultaneous_exec": {
                     "type": "integer",
                     "minimum": 0
                 }
