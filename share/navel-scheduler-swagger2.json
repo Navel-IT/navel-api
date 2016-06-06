@@ -63,19 +63,19 @@
                 }
             }
         },
-        "/main": {
+        "/meta": {
             "get": {
-                "summary": "Show main configuration",
-                "operationId": "show_main",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Main",
+                "summary": "Show meta configuration",
+                "operationId": "show_meta",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Meta",
                 "tags": [
-                    "main"
+                    "meta"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Main configuration",
+                        "description": "Meta configuration",
                         "schema": {
-                            "$ref": "#/definitions/main"
+                            "$ref": "#/definitions/meta"
                         }
                     },
                     "default": {
@@ -84,13 +84,13 @@
                 }
             }
         },
-        "/main/webservices/credentials": {
+        "/meta/webservices/credentials": {
             "put": {
                 "summary": "Modify credentials",
                 "operationId": "modify_webservices_credentials",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Main",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Meta",
                 "tags": [
-                    "main",
+                    "meta",
                     "credentials"
                 ],
                 "parameters": [
@@ -840,7 +840,7 @@
                 }
             }
         },
-        "main": {
+        "meta": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -850,17 +850,17 @@
             ],
             "properties": {
                 "collectors": {
-                    "$ref": "#/definitions/mainCollectors"
+                    "$ref": "#/definitions/metaCollectors"
                 },
                 "publishers": {
-                    "$ref": "#/definitions/mainPublisher"
+                    "$ref": "#/definitions/metaPublisher"
                 },
                 "webservices": {
-                    "$ref": "#/definitions/mainWebServices"
+                    "$ref": "#/definitions/metaWebServices"
                 }
             }
         },
-        "mainCollectors": {
+        "metaCollectors": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -881,7 +881,7 @@
                 }
             }
         },
-        "mainPublisher": {
+        "metaPublisher": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -902,7 +902,7 @@
                 }
             }
         },
-        "mainWebServices": {
+        "metaWebServices": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -919,14 +919,14 @@
                     ]
                 },
                 "credentials": {
-                    "$ref": "#/definitions/mainWebServicesCredentials"
+                    "$ref": "#/definitions/metaWebServicesCredentials"
                 },
                 "mojo_server": {
-                    "$ref": "#/definitions/mainWebServicesMojoServer"
+                    "$ref": "#/definitions/metaWebServicesMojoServer"
                 }
             }
         },
-        "mainWebServicesCredentials": {
+        "metaWebServicesCredentials": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -950,7 +950,7 @@
                 }
             }
         },
-        "mainWebServicesMojoServer": {
+        "metaWebServicesMojoServer": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
@@ -1331,7 +1331,7 @@
             "in": "body",
             "required": true,
             "schema": {
-                "$ref": "#/definitions/mainWebServicesCredentials"
+                "$ref": "#/definitions/metaWebServicesCredentials"
             }
         },
         "collector": {
