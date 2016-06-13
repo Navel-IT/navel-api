@@ -84,33 +84,6 @@
                 }
             }
         },
-        "/meta/webservices/credentials": {
-            "put": {
-                "summary": "Modify credentials",
-                "operationId": "modify_webservices_credentials",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Meta",
-                "tags": [
-                    "meta",
-                    "credentials"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/credentials"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
         "/jobs": {
             "get": {
                 "summary": "List job types",
