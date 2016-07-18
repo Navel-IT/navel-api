@@ -1,3 +1,4 @@
+
 {
     "swagger": "2.0",
     "info": {
@@ -1039,15 +1040,21 @@
             }
         },
         "collector": {
-            "$ref": "#/definitions/baseCollector",
-            "required": [
-                "name",
-                "collection",
-                "async",
-                "scheduling",
-                "execution_timeout",
-                "backend",
-                "backend_input"
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseCollector"
+                },
+                {
+                    "required": [
+                        "name",
+                        "collection",
+                        "async",
+                        "scheduling",
+                        "execution_timeout",
+                        "backend",
+                        "backend_input"
+                    ]
+                }
             ]
         },
         "webservice": {
@@ -1190,16 +1197,22 @@
             }
         },
         "publisher": {
-            "$ref": "#/definitions/basePublisher",
-            "required": [
-                "name",
-                "backend",
-                "backend_input",
-                "scheduling",
-                "auto_clean",
-                "connectable",
-                "auto_connect",
-                "except_collections"
+            "allOf": [
+                {
+                    "$ref": "#/definitions/basePublisher"
+                },
+                {
+                    "required": [
+                        "name",
+                        "backend",
+                        "backend_input",
+                        "scheduling",
+                        "auto_clean",
+                        "connectable",
+                        "auto_connect",
+                        "except_collections"
+                    ]
+                }
             ]
         },
         "publisher_connection_status": {
