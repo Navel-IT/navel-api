@@ -1,5 +1,5 @@
 # Copyright (C) 2015 Yoann Le Garff, Nicolas Boquet and Yann Le Bras
-# navel-api-blueprints is licensed under the Apache License, Version 2.0
+# navel-api is licensed under the Apache License, Version 2.0
 
 #-> BEGIN
 
@@ -21,7 +21,7 @@ install_share('share');
 WriteMakefile(
     NAME => 'Navel::API',
     VERSION_FROM => 'lib/Navel/API.pm',
-    ABSTRACT => 'navel-api-blueprints',
+    ABSTRACT => 'navel-api',
     AUTHOR => 'Yoann Le Garff, Nicolas Boquet and Yann Le Bras',
     LICENSE => 'Apache License, Version 2.0',
     META_MERGE => {
@@ -30,7 +30,7 @@ WriteMakefile(
         },
         resources => {
             license => 'http://www.apache.org/licenses/LICENSE-2.0.html',
-            repository => 'http://github.com/Navel-IT/navel-api-blueprints'
+            repository => 'http://github.com/Navel-IT/navel-api'
         },
         no_index => {
             directory => ['t']
