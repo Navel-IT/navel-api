@@ -1,5 +1,5 @@
 # Copyright (C) 2015 Yoann Le Garff, Nicolas Boquet and Yann Le Bras
-# navel-api-blueprints is licensed under the Apache License, Version 2.0
+# navel-api is licensed under the Apache License, Version 2.0
 
 #-> BEGIN
 
@@ -39,6 +39,6 @@ Copyright (C) 2015 Yoann Le Garff, Nicolas Boquet and Yann Le Bras
 
 =head1 LICENSE
 
-navel-api-blueprints is licensed under the Apache License, Version 2.0
+navel-api is licensed under the Apache License, Version 2.0
 
 =cut
