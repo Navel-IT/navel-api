@@ -31,9 +31,6 @@ WriteMakefile(
         resources => {
             license => 'http://www.apache.org/licenses/LICENSE-2.0.html',
             repository => 'http://github.com/Navel-IT/navel-api'
-        },
-        no_index => {
-            directory => ['t']
         }
     },
     MIN_PERL_VERSION => $min_perl_version,
@@ -45,7 +42,7 @@ WriteMakefile(
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 6.64,
         'File::ShareDir::Install' => 0
-    }
+    },
     TEST_REQUIRES => {
         'Test::More' => 0,
         'Test::Exception' => 0,
