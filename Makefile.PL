@@ -8,7 +8,7 @@
 use strict;
 use warnings;
 
-use ExtUtils::MakeMaker 6.64;
+use ExtUtils::MakeMaker;
 
 use File::ShareDir::Install;
 
@@ -42,6 +42,10 @@ WriteMakefile(
         'Swagger2' => 0.77,
         'File::ShareDir' => 0
     },
+    CONFIGURE_REQUIRES => {
+        'ExtUtils::MakeMaker' => 6.64,
+        'File::ShareDir::Install' => 0
+    }
     TEST_REQUIRES => {
         'Test::More' => 0,
         'Test::Exception' => 0,
