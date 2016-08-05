@@ -409,63 +409,6 @@
                 }
             }
         },
-        "/webservices": {
-            "get": {
-                "summary": "List webservice names",
-                "operationId": "list_webservices",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::WebService",
-                "tags": [
-                    "webservice"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Web service names",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
-                            }
-                        }
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/webservices/{webServiceName}": {
-            "get": {
-                "summary": "Show the properties of a web service",
-                "operationId": "show_webservice",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::WebService",
-                "tags": [
-                    "webservice"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/webServiceName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Web service",
-                        "schema": {
-                            "$ref": "#/definitions/webservice"
-                        }
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
         "/publishers": {
             "get": {
                 "summary": "List publisher names",
@@ -820,7 +763,7 @@
             "required": [
                 "collectors",
                 "publishers",
-                "webservices"
+                "webservice"
             ],
             "properties": {
                 "collectors": {
@@ -829,8 +772,8 @@
                 "publishers": {
                     "$ref": "#/definitions/metaPublisher"
                 },
-                "webservices": {
-                    "$ref": "#/definitions/metaWebServices"
+                "webservice": {
+                    "$ref": "#/definitions/metaWebService"
                 }
             }
         },
@@ -876,31 +819,23 @@
                 }
             }
         },
-        "metaWebServices": {
+        "metaWebService": {
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "definitions_from_file",
                 "credentials",
                 "mojo_server"
             ],
             "properties": {
-                "definitions_from_file": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
                 "credentials": {
-                    "$ref": "#/definitions/metaWebServicesCredentials"
+                    "$ref": "#/definitions/metaWebServiceCredentials"
                 },
                 "mojo_server": {
-                    "$ref": "#/definitions/metaWebServicesMojoServer"
+                    "$ref": "#/definitions/metaWebServiceMojoServer"
                 }
             }
         },
-        "metaWebServicesCredentials": {
+        "metaWebServiceCredentials": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -924,7 +859,7 @@
                 }
             }
         },
-        "metaWebServicesMojoServer": {
+        "metaWebServiceMojoServer": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
@@ -1056,90 +991,6 @@
                     ]
                 }
             ]
-        },
-        "webservice": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "name",
-                "interface_mask",
-                "port",
-                "tls",
-                "ca",
-                "cert",
-                "ciphers",
-                "key",
-                "verify"
-            ],
-            "properties": {
-                "name": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "interface_mask": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "port": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 65535
-                },
-                "tls": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "ca": {
-                    "type": [
-                        "null",
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "cert": {
-                    "type": [
-                        "null",
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "ciphers": {
-                    "type": [
-                        "null",
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "key": {
-                    "type": [
-                        "null",
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "verify": {
-                    "type": [
-                        "null",
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                }
-            }
         },
         "basePublisher": {
             "type": "object",
@@ -1319,7 +1170,7 @@
             "in": "body",
             "required": true,
             "schema": {
-                "$ref": "#/definitions/metaWebServicesCredentials"
+                "$ref": "#/definitions/metaWebServiceCredentials"
             }
         },
         "baseCollector": {
