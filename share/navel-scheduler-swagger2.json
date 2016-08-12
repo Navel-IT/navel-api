@@ -980,6 +980,7 @@
                     "$ref": "#/definitions/baseCollector"
                 },
                 {
+                    "type": "object",
                     "required": [
                         "name",
                         "collection",
@@ -1053,6 +1054,7 @@
                     "$ref": "#/definitions/basePublisher"
                 },
                 {
+                    "type": "object",
                     "required": [
                         "name",
                         "backend",
