@@ -563,7 +563,7 @@
                     "200": {
                         "description": "Publisher connection status",
                         "schema": {
-                            "$ref": "#/definitions/publisher_connection_status"
+                            "$ref": "#/definitions/publisherConnectionStatus"
                         }
                     },
                     "404": {
@@ -1063,7 +1063,7 @@
                 }
             ]
         },
-        "publisher_connection_status": {
+        "publisherConnectionStatus": {
             "type": "object",
             "additionalProperties": false,
             "required": [
