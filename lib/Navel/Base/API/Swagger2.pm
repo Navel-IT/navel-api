@@ -28,10 +28,8 @@ sub spec_file_location {
 }
 
 sub new {
-    my $class = shift;
-
     Swagger2->new()->load(
-        $class->spec_file_location(shift)
+        shift->spec_file_location(shift)
     );
 }
 
