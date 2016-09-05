@@ -566,6 +566,9 @@
                             "$ref": "#/definitions/publisherConnectionStatus"
                         }
                     },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
                     },
@@ -1067,8 +1070,7 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "name",
-                "connectable"
+                "name"
             ],
             "properties": {
                 "name": {
@@ -1077,14 +1079,6 @@
                         "integer",
                         "number"
                     ]
-                },
-                "connectable" : {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
                 },
                 "connecting": {
                     "type": [
