@@ -822,39 +822,11 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "credentials",
                 "mojo_server"
             ],
             "properties": {
-                "credentials": {
-                    "$ref": "#/definitions/metaWebServiceCredentials"
-                },
                 "mojo_server": {
                     "$ref": "#/definitions/metaWebServiceMojoServer"
-                }
-            }
-        },
-        "metaWebServiceCredentials": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "login",
-                "password"
-            ],
-            "properties": {
-                "login": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "password": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
                 }
             }
         },
@@ -1156,14 +1128,6 @@
         }
     },
     "parameters": {
-        "credentials": {
-            "name": "credentials",
-            "in": "body",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/metaWebServiceCredentials"
-            }
-        },
         "baseCollector": {
             "name": "collector",
             "in": "body",
