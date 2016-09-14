@@ -618,36 +618,6 @@
                     }
                 }
             },
-            "post": {
-                "summary": "Create an event and push it to the queue of this publisher",
-                "operationId": "push_event_to_a_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    },
-                    {
-                        "$ref": "#/parameters/publisherEvent"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
             "delete": {
                 "summary": "Delete all events",
                 "operationId": "delete_all_events_from_a_publisher",
