@@ -716,13 +716,6 @@
                         "integer",
                         "number"
                     ]
-                },
-                "api_version": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
                 }
             }
         },
