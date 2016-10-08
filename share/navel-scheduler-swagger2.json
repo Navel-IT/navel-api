@@ -32,7 +32,20 @@
                     "200": {
                         "description": "Product status",
                         "schema": {
-                            "$ref": "#/definitions/productStatus"
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "version"
+                            ],
+                            "properties": {
+                                "version": {
+                                    "type": [
+                                        "string",
+                                        "integer",
+                                        "number"
+                                    ]
+                                }
+                            }
                         }
                     },
                     "default": {
@@ -347,8 +360,8 @@
                 }
             },
             "put": {
-                "summary": "Modify a collector",
-                "operationId": "modify_collector",
+                "summary": "Update a collector",
+                "operationId": "update_collector",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
@@ -404,107 +417,35 @@
                 }
             }
         },
-        "/publishers": {
+        "/collectors/{collectorName}/publisher/queue": {
             "get": {
-                "summary": "List publisher names",
-                "operationId": "list_publishers",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
+                "summary": "Show informations on the queue of the publisher associated with a collector",
+                "operationId": "show_associated_publisher_queue",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
+                    "collector",
                     "publisher"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/collectorName"
+                    }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Publisher names",
+                        "description": "Queue's informations",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
+                            "type": "object",
+                            "required": [
+                                "amount_of_events"
+                            ],
+                            "properties": {
+                                "amount_of_events": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
                             }
                         }
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a publisher",
-                "operationId": "new_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisher"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "409": {
-                        "$ref": "#/responses/resourceAlreadyExists"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/publishers/{publisherName}": {
-            "get": {
-                "summary": "Show the properties of a publisher",
-                "operationId": "show_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Publisher",
-                        "schema": {
-                            "$ref": "#/definitions/publisher"
-                        }
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Modify a publisher",
-                "operationId": "modify_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    },
-                    {
-                        "$ref": "#/parameters/basePublisher"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -518,15 +459,16 @@
                 }
             },
             "delete": {
-                "summary": "Delete a publisher",
-                "operationId": "delete_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
+                "summary": "Delete all events in the queue of the publisher associated with a collector",
+                "operationId": "delete_all_events_from_the_associated_publisher_queue",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
+                    "collector",
                     "publisher"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/publisherName"
+                        "$ref": "#/parameters/collectorName"
                     }
                 ],
                 "responses": {
@@ -534,7 +476,7 @@
                         "$ref": "#/responses/oKKO"
                     },
                     "400": {
-                      "$ref": "#/responses/badRequest"
+                        "$ref": "#/responses/badRequest"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -545,17 +487,18 @@
                 }
             }
         },
-        "/publishers/{publisherName}/connection_status" : {
+        "/collectors/{collectorName}/publisher/connection": {
             "get": {
-                "summary": "Show the connection status of a connectable publisher",
-                "operationId": "show_publisher_connection_status",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
+                "summary": "Show the connection status of the publisher associated with a collector",
+                "operationId": "show_associated_publisher_connection_status",
+                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
+                    "collector",
                     "publisher"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/publisherName"
+                        "$ref": "#/parameters/collectorName"
                     }
                 ],
                 "responses": {
@@ -576,242 +519,69 @@
                     }
                 }
             }
-        },
-        "/publishers/{publisherName}/events": {
-            "get": {
-                "summary": "Show the amount of events in a publisher's queue",
-                "operationId": "show_publisher_amount_of_events",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Amount of events in queue",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "amount_of_events_in_queue"
-                            ],
-                            "properties": {
-                                "amount_of_events_in_queue": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete all events",
-                "operationId": "delete_all_events_from_a_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/publishers/{publisherName}/connect": {
-            "put": {
-                "summary": "Connect this publisher",
-                "operationId": "connect_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/publishers/{publisherName}/disconnect": {
-            "put": {
-                "summary": "Disconnect this publisher",
-                "operationId": "disconnect_publisher",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Publisher",
-                "tags": [
-                    "publisher"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/publisherName"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
         }
     },
     "definitions": {
-        "productStatus": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "version": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                }
-            }
-        },
         "meta": {
             "type": "object",
             "additionalProperties": false,
             "required": [
                 "collectors",
-                "publishers",
                 "webservice"
             ],
             "properties": {
                 "collectors": {
-                    "$ref": "#/definitions/metaCollectors"
-                },
-                "publishers": {
-                    "$ref": "#/definitions/metaPublisher"
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "definitions_from_file",
+                        "maximum"
+                    ],
+                    "properties": {
+                        "definitions_from_file": {
+                            "type": [
+                                "string",
+                                "integer",
+                                "number"
+                            ]
+                        },
+                        "maximum": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
                 },
                 "webservice": {
-                    "$ref": "#/definitions/metaWebService"
-                }
-            }
-        },
-        "metaCollectors": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "definitions_from_file",
-                "maximum"
-            ],
-            "properties": {
-                "definitions_from_file": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "maximum": {
-                    "type": "integer",
-                    "minimum": 0
-                }
-            }
-        },
-        "metaPublisher": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "definitions_from_file",
-                "maximum"
-            ],
-            "properties": {
-                "definitions_from_file": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "maximum": {
-                    "type": "integer",
-                    "minimum": 0
-                }
-            }
-        },
-        "metaWebService": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "mojo_server"
-            ],
-            "properties": {
-                "mojo_server": {
-                    "$ref": "#/definitions/metaWebServiceMojoServer"
-                }
-            }
-        },
-        "metaWebServiceMojoServer": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "reverse_proxy": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "backlog": {
-                    "type": "integer"
-                },
-                "inactivity_timeout": {
-                    "type": "integer"
-                },
-                "max_clients": {
-                    "type": "integer"
-                },
-                "max_requests": {
-                    "type": "integer"
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "mojo_server"
+                    ],
+                    "properties": {
+                        "mojo_server": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "reverse_proxy": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "backlog": {
+                                    "type": "integer"
+                                },
+                                "inactivity_timeout": {
+                                    "type": "integer"
+                                },
+                                "max_clients": {
+                                    "type": "integer"
+                                },
+                                "max_requests": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -880,22 +650,6 @@
                         "number"
                     ]
                 },
-                "async" : {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "scheduling": {
-                    "type": "integer",
-                    "minimum": 5
-                },
-                "execution_timeout": {
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "backend": {
                     "type": [
                         "string",
@@ -903,7 +657,10 @@
                         "number"
                     ]
                 },
-                "backend_input": {}
+                "backend_input": {},
+                "publisher" : {
+                    "$ref": "#/definitions/publisher"
+                }
             }
         },
         "collector": {
@@ -916,26 +673,22 @@
                     "required": [
                         "name",
                         "collection",
-                        "async",
-                        "scheduling",
-                        "execution_timeout",
                         "backend",
-                        "backend_input"
+                        "backend_input",
+                        "publisher"
                     ]
                 }
             ]
         },
-        "basePublisher": {
+        "publisher": {
             "type": "object",
             "additionalProperties": false,
+            "required" : [
+                "backend",
+                "backend_input",
+                "auto_clean"
+            ],
             "properties": {
-                "name": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
                 "backend": {
                     "type": [
                         "string",
@@ -944,75 +697,30 @@
                     ]
                 },
                 "backend_input": {},
-                "scheduling": {
-                    "type": "integer",
-                    "minimum": 5
-                },
                 "auto_clean" : {
                     "type": "integer",
                     "minimum": 0
-                },
-                "connectable" : {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "auto_connect": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "except_collections": {
-                    "type": "array",
-                    "items": {
-                        "type": [
-                            "string",
-                            "integer",
-                            "number"
-                        ]
-                    }
                 }
             }
-        },
-        "publisher": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/basePublisher"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "name",
-                        "backend",
-                        "backend_input",
-                        "scheduling",
-                        "auto_clean",
-                        "connectable",
-                        "auto_connect",
-                        "except_collections"
-                    ]
-                }
-            ]
         },
         "publisherConnectionStatus": {
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "name"
+                "connectable",
+                "connecting",
+                "connected",
+                "disconnecting",
+                "disconnected"
             ],
             "properties": {
-                "name": {
+                "connectable": {
                     "type": [
-                        "string",
                         "integer",
-                        "number"
-                    ]
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
                 },
                 "connecting": {
                     "type": [
@@ -1048,28 +756,6 @@
                 }
             }
         },
-        "publisherEvent": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "collection",
-                "data"
-            ],
-            "properties": {
-                "collection": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "data": {},
-                "time" : {
-                    "type": "integer",
-                    "minimum": 0
-                }
-            }
-        },
         "oKKO": {
             "type": "object",
             "additionalProperties": false,
@@ -1090,6 +776,18 @@
         }
     },
     "parameters": {
+        "jobType": {
+            "name": "jobType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "jobName": {
+            "name": "jobName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
         "baseCollector": {
             "name": "collector",
             "in": "body",
@@ -1106,56 +804,8 @@
                 "$ref": "#/definitions/collector"
             }
         },
-        "basePublisher": {
-            "name": "publisher",
-            "in": "body",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/basePublisher"
-            }
-        },
-        "publisher": {
-            "name": "publisher",
-            "in": "body",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/publisher"
-            }
-        },
-        "publisherEvent": {
-            "name": "publisherEvent",
-            "in": "body",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/publisherEvent"
-            }
-        },
-        "jobType": {
-            "name": "jobType",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "jobName": {
-            "name": "jobName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
         "collectorName": {
             "name": "collectorName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "webServiceName": {
-            "name": "webServiceName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "publisherName": {
-            "name": "publisherName",
             "in": "path",
             "required": true,
             "type": "string"
