@@ -526,8 +526,7 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "collectors",
-                "webservice"
+                "collectors"
             ],
             "properties": {
                 "collectors": {
@@ -548,38 +547,6 @@
                         "maximum": {
                             "type": "integer",
                             "minimum": 0
-                        }
-                    }
-                },
-                "webservice": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": [
-                        "mojo_server"
-                    ],
-                    "properties": {
-                        "mojo_server": {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "properties": {
-                                "reverse_proxy": {
-                                    "type": "integer",
-                                    "minimum": 0,
-                                    "maximum": 1
-                                },
-                                "backlog": {
-                                    "type": "integer"
-                                },
-                                "inactivity_timeout": {
-                                    "type": "integer"
-                                },
-                                "max_clients": {
-                                    "type": "integer"
-                                },
-                                "max_requests": {
-                                    "type": "integer"
-                                }
-                            }
                         }
                     }
                 }
