@@ -417,14 +417,14 @@
                 }
             }
         },
-        "/collectors/{collectorName}/publisher/queue": {
+        "/collectors/{collectorName}/queue": {
             "get": {
-                "summary": "Show informations on the queue of the publisher associated with a collector",
-                "operationId": "show_associated_publisher_queue",
+                "summary": "Show informations on the queue associated with a collector",
+                "operationId": "show_associated_queue",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector",
-                    "publisher"
+                    "queue"
                 ],
                 "parameters": [
                     {
@@ -459,12 +459,12 @@
                 }
             },
             "delete": {
-                "summary": "Delete all events in the queue of the publisher associated with a collector",
-                "operationId": "delete_all_events_from_the_associated_publisher_queue",
+                "summary": "Delete all events in the queue associated with a collector",
+                "operationId": "delete_all_events_from_the_associated_queue",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector",
-                    "publisher"
+                    "queue"
                 ],
                 "parameters": [
                     {
@@ -650,6 +650,10 @@
                         "number"
                     ]
                 },
+                "queue_auto_clean" : {
+                    "type": "integer",
+                    "minimum": 0
+                },
                 "backend": {
                     "type": [
                         "string",
@@ -658,9 +662,14 @@
                     ]
                 },
                 "backend_input": {},
-                "publisher" : {
-                    "$ref": "#/definitions/publisher"
-                }
+                "publisher_backend": {
+                    "type": [
+                        "string",
+                        "integer",
+                        "number"
+                    ]
+                },
+                "publisher_backend_input": {}
             }
         },
         "collector": {
@@ -673,35 +682,14 @@
                     "required": [
                         "name",
                         "collection",
+                        "queue_auto_clean",
                         "backend",
                         "backend_input",
-                        "publisher"
+                        "publisher_backend",
+                        "publisher_backend_input"
                     ]
                 }
             ]
-        },
-        "publisher": {
-            "type": "object",
-            "additionalProperties": false,
-            "required" : [
-                "backend",
-                "backend_input",
-                "auto_clean"
-            ],
-            "properties": {
-                "backend": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
-                },
-                "backend_input": {},
-                "auto_clean" : {
-                    "type": "integer",
-                    "minimum": 0
-                }
-            }
         },
         "publisherConnectionStatus": {
             "type": "object",
