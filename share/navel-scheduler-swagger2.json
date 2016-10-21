@@ -107,11 +107,8 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
+                                "type": "string",
+                                "minLength": 1
                             }
                         }
                     },
@@ -140,11 +137,8 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
+                                "type": "string",
+                                "minLength": 1
                             }
                         }
                     },
@@ -290,11 +284,8 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "type": [
-                                    "string",
-                                    "integer",
-                                    "number"
-                                ]
+                                "type": "string",
+                                "minLength": 1
                             }
                         }
                     },
@@ -538,11 +529,8 @@
                     ],
                     "properties": {
                         "definitions_from_file": {
-                            "type": [
-                                "string",
-                                "integer",
-                                "number"
-                            ]
+                            "type": "string",
+                            "minLength": 1
                         },
                         "maximum": {
                             "type": "integer",
@@ -564,18 +552,12 @@
             ],
             "properties": {
                 "name": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "type": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "enabled": {
                     "type": [
@@ -604,37 +586,25 @@
             "additionalProperties": false,
             "properties": {
                 "name": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "collection": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "queue_auto_clean" : {
                     "type": "integer",
                     "minimum": 0
                 },
                 "backend": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "backend_input": {},
                 "publisher_backend": {
-                    "type": [
-                        "string",
-                        "integer",
-                        "number"
-                    ]
+                    "type": "string",
+                    "minLength": 1
                 },
                 "publisher_backend_input": {}
             }
