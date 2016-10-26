@@ -28,7 +28,7 @@ sub spec_file_location {
 }
 
 sub new {
-    Swagger2->new()->load(
+    Swagger2->new->load(
         shift->spec_file_location(shift)
     );
 }

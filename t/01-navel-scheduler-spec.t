@@ -23,7 +23,7 @@ BEGIN {
 #-> main
 
 lives_ok {
-    Navel::API::Swagger2::Scheduler->new();
+    Navel::API::Swagger2::Scheduler->new;
 } 'loading navel-scheduler spec';
 
 #-> END
