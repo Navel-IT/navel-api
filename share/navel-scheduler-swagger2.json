@@ -589,10 +589,6 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "collection": {
-                    "type": "string",
-                    "minLength": 1
-                },
                 "queue_auto_clean" : {
                     "type": "integer",
                     "minimum": 0
@@ -618,7 +614,6 @@
                     "type": "object",
                     "required": [
                         "name",
-                        "collection",
                         "queue_auto_clean",
                         "backend",
                         "backend_input",
