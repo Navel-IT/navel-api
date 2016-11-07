@@ -546,6 +546,7 @@
             "required": [
                 "name",
                 "type",
+                "backend",
                 "enabled",
                 "singleton",
                 "running"
@@ -556,6 +557,10 @@
                     "minLength": 1
                 },
                 "type": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "backend": {
                     "type": "string",
                     "minLength": 1
                 },
@@ -589,7 +594,7 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "queue_auto_clean" : {
+                "queue_size" : {
                     "type": "integer",
                     "minimum": 0
                 },
@@ -614,7 +619,7 @@
                     "type": "object",
                     "required": [
                         "name",
-                        "queue_auto_clean",
+                        "queue_size",
                         "backend",
                         "backend_input",
                         "publisher_backend",
