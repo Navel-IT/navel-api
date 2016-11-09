@@ -1,0 +1,864 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "navel-dispatcher",
+        "description": "https://github.com/navel-it/navel-dispatcher",
+        "version": "0.1.0",
+        "contact": {
+            "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
+        },
+        "license": {
+            "name": "Apache License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/status": {
+            "get": {
+                "summary": "Show product status",
+                "operationId": "show_status",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Product",
+                "tags": [
+                    "status"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product status",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "version"
+                            ],
+                            "properties": {
+                                "version": {
+                                    "type": [
+                                        "string",
+                                        "integer",
+                                        "number"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/save_configuration": {
+            "put": {
+                "summary": "Save all configuration",
+                "operationId": "save_all_configuration",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Backup",
+                "tags": [
+                    "saveConfiguration"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/meta": {
+            "get": {
+                "summary": "Show meta configuration",
+                "operationId": "show_meta",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Meta",
+                "tags": [
+                    "meta"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Meta configuration",
+                        "schema": {
+                            "$ref": "#/definitions/meta"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs": {
+            "get": {
+                "summary": "List job types",
+                "operationId": "list_job_types",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job types",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}": {
+            "get": {
+                "summary": "List job names by job type",
+                "operationId": "list_jobs_by_type",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job names by job type",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}": {
+            "get": {
+                "summary": "Show the properties of a job",
+                "operationId": "show_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job",
+                        "schema": {
+                            "$ref": "#/definitions/job"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/enable": {
+            "put": {
+                "summary": "Enable a job",
+                "operationId": "enable_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/disable": {
+            "put": {
+                "summary": "Disable a job",
+                "operationId": "disable_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/jobs/{jobType}/{jobName}/execute": {
+            "put": {
+                "summary": "Execute a job",
+                "operationId": "execute_job_by_type_and_name",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "tags": [
+                    "job"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/jobType"
+                    },
+                    {
+                        "$ref": "#/parameters/jobName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers": {
+            "get": {
+                "summary": "List storekeeper names",
+                "operationId": "list_storekeepers",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Storekeeper names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a storekeeper",
+                "operationId": "new_storekeeper",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeper"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "409": {
+                        "$ref": "#/responses/resourceAlreadyExists"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{storekeeperName}": {
+            "get": {
+                "summary": "Show the properties of a storekeeper",
+                "operationId": "show_storekeeper",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Storekeeper",
+                        "schema": {
+                            "$ref": "#/definitions/storekeeper"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a storekeeper",
+                "operationId": "update_storekeeper",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    },
+                    {
+                        "$ref": "#/parameters/baseStorekeeper"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a storekeeper",
+                "operationId": "delete_storekeeper",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{storekeeperName}/queue": {
+            "get": {
+                "summary": "Show informations on the queue associated with a storekeeper",
+                "operationId": "show_associated_queue",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "queue"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Queue's informations",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "amount_of_events"
+                            ],
+                            "properties": {
+                                "amount_of_events": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete all events in the queue associated with a storekeeper",
+                "operationId": "delete_all_events_from_the_associated_queue",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "queue"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{storekeeperName}/database/connection": {
+            "get": {
+                "summary": "Show the connection status of the database associated with a storekeeper",
+                "operationId": "show_associated_database_connection_status",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "database"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Database connection status",
+                        "schema": {
+                            "$ref": "#/definitions/connectionStatus"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{storekeeperName}/consumer/connection": {
+            "get": {
+                "summary": "Show the connection status of the consumer associated with a storekeeper",
+                "operationId": "show_associated_consumer_connection_status",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "consumer"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/storekeeperName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Consumer connection status",
+                        "schema": {
+                            "$ref": "#/definitions/consumerConnectionStatus"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "meta": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "storekeepers"
+            ],
+            "properties": {
+                "storekeepers": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "definitions_from_file",
+                        "maximum"
+                    ],
+                    "properties": {
+                        "definitions_from_file": {
+                            "type": "string",
+                            "minLength": 1
+                        },
+                        "maximum": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                }
+            }
+        },
+        "job": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "type",
+                "backend",
+                "enabled",
+                "singleton",
+                "running"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "backend": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "enabled": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "singleton": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "running": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "baseStorekeeper": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "queue_size" : {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "database_host": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "database_port": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                },
+                "database_connection_timeout": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "database_tls": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "database_tls_verify": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "database_tls_ca_cert": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1
+                },
+                "database_user": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1
+                },
+                "database_password": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "consumer_backend": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "consumer_backend_input": {}
+            }
+        },
+        "storekeeper": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseStorekeeper"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "queue_size",
+                        "database_tls",
+                        "database_tls_verify",
+                        "database_tls_ca_cert",
+                        "consumer_backend",
+                        "consumer_backend_input"
+                    ]
+                }
+            ]
+        },
+        "connectionStatus": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "connecting",
+                "connected",
+                "disconnecting",
+                "disconnected"
+            ],
+            "properties": {
+                "connecting": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "connected": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "disconnecting": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "disconnected": {
+                    "type": [
+                        "integer",
+                        "boolean"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "consumerConnectionStatus": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/connectionStatus"
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "connectable"
+                    ],
+                    "properties": {
+                        "connectable": {
+                            "type": [
+                                "integer",
+                                "boolean"
+                            ],
+                            "minimum": 0,
+                            "maximum": 1
+                        }
+                    }
+                }
+            ]
+        },
+        "oKKO": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "ok",
+                "ko"
+            ],
+            "properties": {
+                "ok": {
+                    "type": "array",
+                    "items": {}
+                },
+                "ko": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        }
+    },
+    "parameters": {
+        "jobType": {
+            "name": "jobType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "jobName": {
+            "name": "jobName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "baseStorekeeper": {
+            "name": "storekeeper",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/baseStorekeeper"
+            }
+        },
+        "storekeeper": {
+            "name": "storekeeper",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/storekeeper"
+            }
+        },
+        "storekeeperName": {
+            "name": "storekeeperName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        }
+    },
+    "responses": {
+        "oKKO": {
+            "description": "OK and KO messages",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "badRequest": {
+            "description": "Incorrect request",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "resourceCouldNotBeFound": {
+            "description": "This resource could not be found",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "resourceAlreadyExists": {
+            "description": "This resource already exists",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "unexpectedError": {
+            "description": "Unexpected Error",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        }
+    }
+}
