@@ -296,7 +296,7 @@
             },
             "post": {
                 "summary": "Create a collector",
-                "operationId": "new",
+                "operationId": "create",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
