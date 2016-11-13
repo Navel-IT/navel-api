@@ -75,7 +75,7 @@
         "/meta": {
             "get": {
                 "summary": "Show meta configuration",
-                "operationId": "show_meta",
+                "operationId": "show",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Meta",
                 "tags": [
                     "meta"
@@ -96,7 +96,7 @@
         "/jobs": {
             "get": {
                 "summary": "List job types",
-                "operationId": "list_job_types",
+                "operationId": "list_types",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
@@ -118,17 +118,17 @@
                 }
             }
         },
-        "/jobs/{jobType}": {
+        "/jobs/{type}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "list_jobs_by_type",
+                "operationId": "list_by_type",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     }
                 ],
                 "responses": {
@@ -151,20 +151,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}": {
+        "/jobs/{type}/{name}": {
             "get": {
                 "summary": "Show the properties of a job",
-                "operationId": "show_job_by_type_and_name",
+                "operationId": "show_by_type_and_name",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -183,20 +183,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/enable": {
+        "/jobs/{type}/{name}/enable": {
             "put": {
                 "summary": "Enable a job",
-                "operationId": "enable_job_by_type_and_name",
+                "operationId": "enable_by_type_and_name",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -212,20 +212,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/disable": {
+        "/jobs/{type}/{name}/disable": {
             "put": {
                 "summary": "Disable a job",
-                "operationId": "disable_job_by_type_and_name",
+                "operationId": "disable_by_type_and_name",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -241,20 +241,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/execute": {
+        "/jobs/{type}/{name}/execute": {
             "put": {
                 "summary": "Execute a job",
-                "operationId": "execute_job_by_type_and_name",
+                "operationId": "execute_by_type_and_name",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -273,7 +273,7 @@
         "/storekeepers": {
             "get": {
                 "summary": "List storekeeper names",
-                "operationId": "list_storekeepers",
+                "operationId": "list",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper"
@@ -296,14 +296,14 @@
             },
             "post": {
                 "summary": "Create a storekeeper",
-                "operationId": "new_storekeeper",
+                "operationId": "new",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeper"
+                        "$ref": "#/parameters/definition"
                     }
                 ],
                 "responses": {
@@ -322,17 +322,17 @@
                 }
             }
         },
-        "/storekeepers/{storekeeperName}": {
+        "/storekeepers/{name}": {
             "get": {
                 "summary": "Show the properties of a storekeeper",
-                "operationId": "show_storekeeper",
+                "operationId": "show",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -352,17 +352,17 @@
             },
             "put": {
                 "summary": "Update a storekeeper",
-                "operationId": "update_storekeeper",
+                "operationId": "update",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     },
                     {
-                        "$ref": "#/parameters/baseStorekeeper"
+                        "$ref": "#/parameters/baseDefinition"
                     }
                 ],
                 "responses": {
@@ -382,14 +382,14 @@
             },
             "delete": {
                 "summary": "Delete a storekeeper",
-                "operationId": "delete_storekeeper",
+                "operationId": "delete",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -408,7 +408,7 @@
                 }
             }
         },
-        "/storekeepers/{storekeeperName}/queue": {
+        "/storekeepers/{name}/queue": {
             "get": {
                 "summary": "Show informations on the queue associated with a storekeeper",
                 "operationId": "show_associated_queue",
@@ -419,7 +419,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -459,7 +459,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -478,7 +478,7 @@
                 }
             }
         },
-        "/storekeepers/{storekeeperName}/database/connection": {
+        "/storekeepers/{name}/database/connection": {
             "get": {
                 "summary": "Show the connection status of the database associated with a storekeeper",
                 "operationId": "show_associated_database_connection_status",
@@ -489,7 +489,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -511,7 +511,7 @@
                 }
             }
         },
-        "/storekeepers/{storekeeperName}/consumer/connection": {
+        "/storekeepers/{name}/consumer/connection": {
             "get": {
                 "summary": "Show the connection status of the consumer associated with a storekeeper",
                 "operationId": "show_associated_consumer_connection_status",
@@ -522,7 +522,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/storekeeperName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -794,39 +794,33 @@
         }
     },
     "parameters": {
-        "jobType": {
-            "name": "jobType",
+        "type": {
+            "name": "type",
             "in": "path",
             "required": true,
             "type": "string"
         },
-        "jobName": {
-            "name": "jobName",
+        "name": {
+            "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
         },
-        "baseStorekeeper": {
-            "name": "storekeeper",
+        "baseDefinition": {
+            "name": "baseDefinition",
             "in": "body",
             "required": true,
             "schema": {
                 "$ref": "#/definitions/baseStorekeeper"
             }
         },
-        "storekeeper": {
-            "name": "storekeeper",
+        "definition": {
+            "name": "definition",
             "in": "body",
             "required": true,
             "schema": {
                 "$ref": "#/definitions/storekeeper"
             }
-        },
-        "storekeeperName": {
-            "name": "storekeeperName",
-            "in": "path",
-            "required": true,
-            "type": "string"
         }
     },
     "responses": {

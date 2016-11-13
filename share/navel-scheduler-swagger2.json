@@ -75,7 +75,7 @@
         "/meta": {
             "get": {
                 "summary": "Show meta configuration",
-                "operationId": "show_meta",
+                "operationId": "show",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Meta",
                 "tags": [
                     "meta"
@@ -96,7 +96,7 @@
         "/jobs": {
             "get": {
                 "summary": "List job types",
-                "operationId": "list_job_types",
+                "operationId": "list_types",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
@@ -118,17 +118,17 @@
                 }
             }
         },
-        "/jobs/{jobType}": {
+        "/jobs/{type}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "list_jobs_by_type",
+                "operationId": "list_by_type",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     }
                 ],
                 "responses": {
@@ -151,20 +151,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}": {
+        "/jobs/{type}/{name}": {
             "get": {
                 "summary": "Show the properties of a job",
-                "operationId": "show_job_by_type_and_name",
+                "operationId": "show_by_type_and_name",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -183,20 +183,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/enable": {
+        "/jobs/{type}/{name}/enable": {
             "put": {
                 "summary": "Enable a job",
-                "operationId": "enable_job_by_type_and_name",
+                "operationId": "enable_by_type_and_name",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -212,20 +212,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/disable": {
+        "/jobs/{type}/{name}/disable": {
             "put": {
                 "summary": "Disable a job",
-                "operationId": "disable_job_by_type_and_name",
+                "operationId": "disable_by_type_and_name",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -241,20 +241,20 @@
                 }
             }
         },
-        "/jobs/{jobType}/{jobName}/execute": {
+        "/jobs/{type}/{name}/execute": {
             "put": {
                 "summary": "Execute a job",
-                "operationId": "execute_job_by_type_and_name",
+                "operationId": "execute_by_type_and_name",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
                 "tags": [
                     "job"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/jobType"
+                        "$ref": "#/parameters/type"
                     },
                     {
-                        "$ref": "#/parameters/jobName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -273,7 +273,7 @@
         "/collectors": {
             "get": {
                 "summary": "List collector names",
-                "operationId": "list_collectors",
+                "operationId": "list",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
@@ -296,14 +296,14 @@
             },
             "post": {
                 "summary": "Create a collector",
-                "operationId": "new_collector",
+                "operationId": "new",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collector"
+                        "$ref": "#/parameters/definition"
                     }
                 ],
                 "responses": {
@@ -322,17 +322,17 @@
                 }
             }
         },
-        "/collectors/{collectorName}": {
+        "/collectors/{name}": {
             "get": {
                 "summary": "Show the properties of a collector",
-                "operationId": "show_collector",
+                "operationId": "show",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -352,17 +352,17 @@
             },
             "put": {
                 "summary": "Update a collector",
-                "operationId": "update_collector",
+                "operationId": "update",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     },
                     {
-                        "$ref": "#/parameters/baseCollector"
+                        "$ref": "#/parameters/baseDefinition"
                     }
                 ],
                 "responses": {
@@ -382,14 +382,14 @@
             },
             "delete": {
                 "summary": "Delete a collector",
-                "operationId": "delete_collector",
+                "operationId": "delete",
                 "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
                 "tags": [
                     "collector"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -408,7 +408,7 @@
                 }
             }
         },
-        "/collectors/{collectorName}/queue": {
+        "/collectors/{name}/queue": {
             "get": {
                 "summary": "Show informations on the queue associated with a collector",
                 "operationId": "show_associated_queue",
@@ -419,7 +419,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -459,7 +459,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -478,7 +478,7 @@
                 }
             }
         },
-        "/collectors/{collectorName}/publisher/connection": {
+        "/collectors/{name}/publisher/connection": {
             "get": {
                 "summary": "Show the connection status of the publisher associated with a collector",
                 "operationId": "show_associated_publisher_connection_status",
@@ -489,7 +489,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/collectorName"
+                        "$ref": "#/parameters/name"
                     }
                 ],
                 "responses": {
@@ -701,39 +701,33 @@
         }
     },
     "parameters": {
-        "jobType": {
-            "name": "jobType",
+        "type": {
+            "name": "type",
             "in": "path",
             "required": true,
             "type": "string"
         },
-        "jobName": {
-            "name": "jobName",
+        "name": {
+            "name": "name",
             "in": "path",
             "required": true,
             "type": "string"
         },
-        "baseCollector": {
-            "name": "collector",
+        "baseDefinition": {
+            "name": "baseDefinition",
             "in": "body",
             "required": true,
             "schema": {
                 "$ref": "#/definitions/baseCollector"
             }
         },
-        "collector": {
-            "name": "collector",
+        "definition": {
+            "name": "definition",
             "in": "body",
             "required": true,
             "schema": {
                 "$ref": "#/definitions/collector"
             }
-        },
-        "collectorName": {
-            "name": "collectorName",
-            "in": "path",
-            "required": true,
-            "type": "string"
         }
     },
     "responses": {
