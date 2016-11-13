@@ -697,9 +697,14 @@
                     "required": [
                         "name",
                         "queue_size",
+                        "database_host",
+                        "database_port",
+                        "database_connection_timeout",
                         "database_tls",
                         "database_tls_verify",
                         "database_tls_ca_cert",
+                        "database_user",
+                        "database_password",
                         "consumer_backend",
                         "consumer_backend_input"
                     ]
