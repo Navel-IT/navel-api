@@ -496,7 +496,57 @@
                     "200": {
                         "description": "Publisher connection status",
                         "schema": {
-                            "$ref": "#/definitions/publisherConnectionStatus"
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "connectable",
+                                "connecting",
+                                "connected",
+                                "disconnecting",
+                                "disconnected"
+                            ],
+                            "properties": {
+                                "connectable": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "connecting": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "connected": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "disconnecting": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "disconnected": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                }
+                            }
                         }
                     },
                     "400": {
@@ -627,59 +677,6 @@
                     ]
                 }
             ]
-        },
-        "publisherConnectionStatus": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "connectable",
-                "connecting",
-                "connected",
-                "disconnecting",
-                "disconnected"
-            ],
-            "properties": {
-                "connectable": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "connecting": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "connected": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "disconnecting": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "disconnected": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                }
-            }
         },
         "oKKO": {
             "type": "object",
