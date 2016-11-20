@@ -408,10 +408,39 @@
                 }
             }
         },
-        "/storekeepers/{name}/queue": {
+        "/storekeepers/{name}/consumer/queue": {
             "get": {
-                "summary": "Show informations on the queue associated with a storekeeper",
-                "operationId": "show_associated_queue",
+                "summary": "Show informations on the consumer queue associated with a storekeeper",
+                "operationId": "show_associated_consumer_queue",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "consumer",
+                    "queue"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/queueStatus"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete all events in the queue associated with a storekeeper",
+                "operationId": "delete_all_events_from_the_associated_queue",
                 "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
                 "tags": [
                     "storekeeper",
@@ -424,19 +453,38 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Queue's informations",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "amount_of_events"
-                            ],
-                            "properties": {
-                                "amount_of_events": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                }
-                            }
-                        }
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{name}/publisher/queue": {
+            "get": {
+                "summary": "Show informations on the publisher queue associated with a storekeeper",
+                "operationId": "show_associated_publisher_queue",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "publisher",
+                    "queue"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/queueStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -494,10 +542,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Database connection status",
-                        "schema": {
-                            "$ref": "#/definitions/connectionStatus"
-                        }
+                        "$ref": "#/responses/connectionStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -527,10 +572,37 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Consumer connection status",
-                        "schema": {
-                            "$ref": "#/definitions/consumerConnectionStatus"
-                        }
+                        "$ref": "#/responses/connectionStatus"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{name}/publisher/connection": {
+            "get": {
+                "summary": "Show the connection status of the publisher associated with a storekeeper",
+                "operationId": "show_associated_publisher_connection_status",
+                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "tags": [
+                    "storekeeper",
+                    "consumer"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/connectionStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -627,10 +699,6 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "queue_size" : {
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "database_host": {
                     "type": "string",
                     "minLength": 1
@@ -680,11 +748,24 @@
                         "null"
                     ]
                 },
+                "consumer_queue_size" : {
+                    "type": "integer",
+                    "minimum": 0
+                },
                 "consumer_backend": {
                     "type": "string",
                     "minLength": 1
                 },
-                "consumer_backend_input": {}
+                "consumer_backend_input": {},
+                "publisher_queue_size" : {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "publisher_backend": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "publisher_backend_input": {}
             }
         },
         "storekeeper": {
@@ -696,7 +777,6 @@
                     "type": "object",
                     "required": [
                         "name",
-                        "queue_size",
                         "database_host",
                         "database_port",
                         "database_connection_timeout",
@@ -705,77 +785,13 @@
                         "database_tls_ca_cert",
                         "database_user",
                         "database_password",
+                        "consumer_queue_size",
                         "consumer_backend",
-                        "consumer_backend_input"
+                        "consumer_backend_input",
+                        "publisher_queue_size",
+                        "publisher_backend",
+                        "publisher_backend_input"
                     ]
-                }
-            ]
-        },
-        "connectionStatus": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "connecting",
-                "connected",
-                "disconnecting",
-                "disconnected"
-            ],
-            "properties": {
-                "connecting": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "connected": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "disconnecting": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "disconnected": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                }
-            }
-        },
-        "consumerConnectionStatus": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/connectionStatus"
-                },
-                {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "required": [
-                        "connectable"
-                    ],
-                    "properties": {
-                        "connectable": {
-                            "type": [
-                                "integer",
-                                "boolean"
-                            ],
-                            "minimum": 0,
-                            "maximum": 1
-                        }
-                    }
                 }
             ]
         },
@@ -829,6 +845,77 @@
         }
     },
     "responses": {
+        "queueStatus": {
+            "description": "Queue status",
+            "schema": {
+                "type": "object",
+                "required": [
+                    "amount_of_events"
+                ],
+                "properties": {
+                    "amount_of_events": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            }
+        },
+        "connectionStatus": {
+            "description": "Connection status",
+            "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "connectable",
+                    "connecting",
+                    "connected",
+                    "disconnecting",
+                    "disconnected"
+                ],
+                "properties": {
+                    "connectable": {
+                        "type": [
+                            "integer",
+                            "boolean"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "connecting": {
+                        "type": [
+                            "integer",
+                            "boolean"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "connected": {
+                        "type": [
+                            "integer",
+                            "boolean"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "disconnecting": {
+                        "type": [
+                            "integer",
+                            "boolean"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "disconnected": {
+                        "type": [
+                            "integer",
+                            "boolean"
+                        ],
+                        "minimum": 0,
+                        "maximum": 1
+                    }
+                }
+            }
+        },
         "oKKO": {
             "description": "OK and KO messages",
             "schema": {
