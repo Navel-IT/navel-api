@@ -24,7 +24,7 @@ no_index:
 requires:
   File::ShareDir: '0'
   Navel::Base: '0'
-  Swagger2: '0.77'
+  JSON::Validator: '0'
   perl: v5.18.0
 resources:
   license: http://www.apache.org/licenses/LICENSE-2.0.html

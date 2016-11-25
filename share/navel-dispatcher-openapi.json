@@ -23,8 +23,8 @@
         "/status": {
             "get": {
                 "summary": "Show product status",
-                "operationId": "show_status",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Product",
+                "operationId": "showStatus",
+                "x-mojo-to": "Controller::OpenAPI::Product#show_status",
                 "tags": [
                     "status"
                 ],
@@ -56,11 +56,12 @@
         },
         "/save_configuration": {
             "put": {
-                "summary": "Save all configuration",
-                "operationId": "save_all_configuration",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Backup",
+                "summary": "Save configuration",
+                "operationId": "saveConfiguration",
+                "x-mojo-to": "Controller::OpenAPI::Configuration#save",
                 "tags": [
-                    "saveConfiguration"
+                    "backup",
+                    "configuration"
                 ],
                 "responses": {
                     "200": {
@@ -75,8 +76,8 @@
         "/meta": {
             "get": {
                 "summary": "Show meta configuration",
-                "operationId": "show",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Meta",
+                "operationId": "showMeta",
+                "x-mojo-to": "Controller::OpenAPI::Meta#show",
                 "tags": [
                     "meta"
                 ],
@@ -96,8 +97,8 @@
         "/jobs": {
             "get": {
                 "summary": "List job types",
-                "operationId": "list_types",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "listJobTypes",
+                "x-mojo-to": "Controller::OpenAPI::Job#list_types",
                 "tags": [
                     "job"
                 ],
@@ -121,8 +122,8 @@
         "/jobs/{type}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "list_by_type",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "listJobNamesByJobType",
+                "x-mojo-to": "Controller::OpenAPI::Job#list_by_type",
                 "tags": [
                     "job"
                 ],
@@ -154,8 +155,8 @@
         "/jobs/{type}/{name}": {
             "get": {
                 "summary": "Show the properties of a job",
-                "operationId": "show_by_type_and_name",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "showJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#show_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -186,8 +187,8 @@
         "/jobs/{type}/{name}/enable": {
             "put": {
                 "summary": "Enable a job",
-                "operationId": "enable_by_type_and_name",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "enableJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#enable_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -215,8 +216,8 @@
         "/jobs/{type}/{name}/disable": {
             "put": {
                 "summary": "Disable a job",
-                "operationId": "disable_by_type_and_name",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "disableJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#disable_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -244,8 +245,8 @@
         "/jobs/{type}/{name}/execute": {
             "put": {
                 "summary": "Execute a job",
-                "operationId": "execute_by_type_and_name",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "executeJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#execute_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -273,8 +274,8 @@
         "/storekeepers": {
             "get": {
                 "summary": "List storekeeper names",
-                "operationId": "list",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "listStorekeeperNames",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#list",
                 "tags": [
                     "storekeeper"
                 ],
@@ -296,8 +297,8 @@
             },
             "post": {
                 "summary": "Create a storekeeper",
-                "operationId": "create",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "createStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#create",
                 "tags": [
                     "storekeeper"
                 ],
@@ -325,8 +326,8 @@
         "/storekeepers/{name}": {
             "get": {
                 "summary": "Show the properties of a storekeeper",
-                "operationId": "show",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show",
                 "tags": [
                     "storekeeper"
                 ],
@@ -352,8 +353,8 @@
             },
             "put": {
                 "summary": "Update a storekeeper",
-                "operationId": "update",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "updateStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#update",
                 "tags": [
                     "storekeeper"
                 ],
@@ -382,8 +383,8 @@
             },
             "delete": {
                 "summary": "Delete a storekeeper",
-                "operationId": "delete",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "deleteStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete",
                 "tags": [
                     "storekeeper"
                 ],
@@ -411,8 +412,8 @@
         "/storekeepers/{name}/consumer/queue": {
             "get": {
                 "summary": "Show informations on the consumer queue associated with a storekeeper",
-                "operationId": "show_associated_consumer_queue",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showConsumerQueueAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_queue",
                 "tags": [
                     "storekeeper",
                     "consumer",
@@ -439,11 +440,12 @@
                 }
             },
             "delete": {
-                "summary": "Delete all events in the queue associated with a storekeeper",
-                "operationId": "delete_all_events_from_the_associated_queue",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "summary": "Delete all events in the consumer queue associated with a storekeeper",
+                "operationId": "deleteAllEventsFromConsumerQueueAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete_all_events_from_associated_consumer_queue",
                 "tags": [
                     "storekeeper",
+                    "consumer",
                     "queue"
                 ],
                 "parameters": [
@@ -470,8 +472,8 @@
         "/storekeepers/{name}/publisher/queue": {
             "get": {
                 "summary": "Show informations on the publisher queue associated with a storekeeper",
-                "operationId": "show_associated_publisher_queue",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showPublisherQueueAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_queue",
                 "tags": [
                     "storekeeper",
                     "publisher",
@@ -498,11 +500,12 @@
                 }
             },
             "delete": {
-                "summary": "Delete all events in the queue associated with a storekeeper",
-                "operationId": "delete_all_events_from_the_associated_queue",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "summary": "Delete all events in the publisher queue associated with a storekeeper",
+                "operationId": "deleteAllEventsFromPublisherQueueAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete_all_events_from_associated_publisher_queue",
                 "tags": [
                     "storekeeper",
+                    "publisher",
                     "queue"
                 ],
                 "parameters": [
@@ -529,11 +532,12 @@
         "/storekeepers/{name}/database/connection": {
             "get": {
                 "summary": "Show the connection status of the database associated with a storekeeper",
-                "operationId": "show_associated_database_connection_status",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showDatabaseConnectionStatusAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_database_connection_status",
                 "tags": [
                     "storekeeper",
-                    "database"
+                    "database",
+                    "connection"
                 ],
                 "parameters": [
                     {
@@ -559,11 +563,12 @@
         "/storekeepers/{name}/consumer/connection": {
             "get": {
                 "summary": "Show the connection status of the consumer associated with a storekeeper",
-                "operationId": "show_associated_consumer_connection_status",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showConsumerConnectionStatusAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_connection_status",
                 "tags": [
                     "storekeeper",
-                    "consumer"
+                    "consumer",
+                    "connection"
                 ],
                 "parameters": [
                     {
@@ -589,11 +594,12 @@
         "/storekeepers/{name}/publisher/connection": {
             "get": {
                 "summary": "Show the connection status of the publisher associated with a storekeeper",
-                "operationId": "show_associated_publisher_connection_status",
-                "x-mojo-controller": "Navel::Dispatcher::Mojolicious::Application::Controller::Swagger2::Storekeeper",
+                "operationId": "showPublisherConnectionStatusAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_connection_status",
                 "tags": [
                     "storekeeper",
-                    "consumer"
+                    "publisher",
+                    "connection"
                 ],
                 "parameters": [
                     {

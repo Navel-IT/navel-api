@@ -5,13 +5,13 @@
 
 #-> initialization
 
-package Navel::Base::API::Swagger2 0.1;
+package Navel::Base::API::OpenAPI 0.1;
 
 use Navel::Base;
 
 use parent 'Navel::Base::API';
 
-use Swagger2 0.77;
+use JSON::Validator::OpenAPI;
 
 use File::ShareDir 'dist_dir';
 
@@ -28,7 +28,7 @@ sub spec_file_location {
 }
 
 sub new {
-    Swagger2->new->load(
+    JSON::Validator::OpenAPI->new->load_and_validate_spec(
         shift->spec_file_location(shift)
     );
 }
@@ -49,7 +49,7 @@ __END__
 
 =head1 NAME
 
-Navel::Base::API::Swagger2
+Navel::Base::API::OpenAPI
 
 =head1 COPYRIGHT
 

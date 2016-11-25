@@ -17,13 +17,13 @@ use Test::File::ShareDir -share => {
 };
 
 BEGIN {
-    use_ok('Navel::API::Swagger2::Dispatcher');
+    use_ok('Navel::API::OpenAPI::Dispatcher');
 }
 
 #-> main
 
 lives_ok {
-    Navel::API::Swagger2::Dispatcher->new;
+    Navel::API::OpenAPI::Dispatcher->new;
 } 'loading navel-dispatcher spec';
 
 #-> END

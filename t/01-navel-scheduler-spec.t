@@ -17,13 +17,13 @@ use Test::File::ShareDir -share => {
 };
 
 BEGIN {
-    use_ok('Navel::API::Swagger2::Scheduler');
+    use_ok('Navel::API::OpenAPI::Scheduler');
 }
 
 #-> main
 
 lives_ok {
-    Navel::API::Swagger2::Scheduler->new;
+    Navel::API::OpenAPI::Scheduler->new;
 } 'loading navel-scheduler spec';
 
 #-> END

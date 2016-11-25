@@ -23,8 +23,8 @@
         "/status": {
             "get": {
                 "summary": "Show product status",
-                "operationId": "show_status",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Product",
+                "operationId": "showStatus",
+                "x-mojo-to": "Controller::OpenAPI::Product#show_status",
                 "tags": [
                     "status"
                 ],
@@ -56,11 +56,12 @@
         },
         "/save_configuration": {
             "put": {
-                "summary": "Save all configuration",
-                "operationId": "save_all_configuration",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Backup",
+                "summary": "Save configuration",
+                "operationId": "saveConfiguration",
+                "x-mojo-to": "Controller::OpenAPI::Configuration#save",
                 "tags": [
-                    "saveConfiguration"
+                    "backup",
+                    "configuration"
                 ],
                 "responses": {
                     "200": {
@@ -75,8 +76,8 @@
         "/meta": {
             "get": {
                 "summary": "Show meta configuration",
-                "operationId": "show",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Meta",
+                "operationId": "showMeta",
+                "x-mojo-to": "Controller::OpenAPI::Meta#show",
                 "tags": [
                     "meta"
                 ],
@@ -96,8 +97,8 @@
         "/jobs": {
             "get": {
                 "summary": "List job types",
-                "operationId": "list_types",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "listJobTypes",
+                "x-mojo-to": "Controller::OpenAPI::Job#list_types",
                 "tags": [
                     "job"
                 ],
@@ -121,8 +122,8 @@
         "/jobs/{type}": {
             "get": {
                 "summary": "List job names by job type",
-                "operationId": "list_by_type",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "listJobNamesByJobType",
+                "x-mojo-to": "Controller::OpenAPI::Job#list_by_type",
                 "tags": [
                     "job"
                 ],
@@ -154,8 +155,8 @@
         "/jobs/{type}/{name}": {
             "get": {
                 "summary": "Show the properties of a job",
-                "operationId": "show_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "showJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#show_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -186,8 +187,8 @@
         "/jobs/{type}/{name}/enable": {
             "put": {
                 "summary": "Enable a job",
-                "operationId": "enable_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "enableJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#enable_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -215,8 +216,8 @@
         "/jobs/{type}/{name}/disable": {
             "put": {
                 "summary": "Disable a job",
-                "operationId": "disable_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "disableJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#disable_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -244,8 +245,8 @@
         "/jobs/{type}/{name}/execute": {
             "put": {
                 "summary": "Execute a job",
-                "operationId": "execute_by_type_and_name",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Job",
+                "operationId": "executeJobByTypeAndName",
+                "x-mojo-to": "Controller::OpenAPI::Job#execute_by_type_and_name",
                 "tags": [
                     "job"
                 ],
@@ -273,8 +274,8 @@
         "/collectors": {
             "get": {
                 "summary": "List collector names",
-                "operationId": "list",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "listCollectorNames",
+                "x-mojo-to": "Controller::OpenAPI::Collector#list",
                 "tags": [
                     "collector"
                 ],
@@ -296,8 +297,8 @@
             },
             "post": {
                 "summary": "Create a collector",
-                "operationId": "create",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "createCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#create",
                 "tags": [
                     "collector"
                 ],
@@ -325,8 +326,8 @@
         "/collectors/{name}": {
             "get": {
                 "summary": "Show the properties of a collector",
-                "operationId": "show",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "showCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#show",
                 "tags": [
                     "collector"
                 ],
@@ -352,8 +353,8 @@
             },
             "put": {
                 "summary": "Update a collector",
-                "operationId": "update",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "updateCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#update",
                 "tags": [
                     "collector"
                 ],
@@ -382,8 +383,8 @@
             },
             "delete": {
                 "summary": "Delete a collector",
-                "operationId": "delete",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "deleteCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#delete",
                 "tags": [
                     "collector"
                 ],
@@ -411,8 +412,8 @@
         "/collectors/{name}/queue": {
             "get": {
                 "summary": "Show informations on the queue associated with a collector",
-                "operationId": "show_associated_queue",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "showQueueAssociatedWithCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#show_associated_queue",
                 "tags": [
                     "collector",
                     "queue"
@@ -451,8 +452,8 @@
             },
             "delete": {
                 "summary": "Delete all events in the queue associated with a collector",
-                "operationId": "delete_all_events_from_the_associated_queue",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "deleteAllEventsFromQueueAssociatedWithCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#delete_all_events_from_associated_queue",
                 "tags": [
                     "collector",
                     "queue"
@@ -481,11 +482,12 @@
         "/collectors/{name}/publisher/connection": {
             "get": {
                 "summary": "Show the connection status of the publisher associated with a collector",
-                "operationId": "show_associated_publisher_connection_status",
-                "x-mojo-controller": "Navel::Scheduler::Mojolicious::Application::Controller::Swagger2::Collector",
+                "operationId": "showPublisherConnectionStatusAssociatedWithCollector",
+                "x-mojo-to": "Controller::OpenAPI::Collector#show_associated_publisher_connection_status",
                 "tags": [
                     "collector",
-                    "publisher"
+                    "publisher",
+                    "connection"
                 ],
                 "parameters": [
                     {

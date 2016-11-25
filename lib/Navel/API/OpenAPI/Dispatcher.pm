@@ -5,15 +5,15 @@
 
 #-> initialization
 
-package Navel::API::Swagger2::Scheduler 0.1;
+package Navel::API::OpenAPI::Dispatcher 0.1;
 
 use Navel::Base;
 
-use parent 'Navel::Base::API::Swagger2';
+use parent 'Navel::Base::API::OpenAPI';
 
 #-> class variables
 
-our $SPEC_FILENAME = 'navel-scheduler-swagger2.json';
+our $SPEC_FILENAME = 'navel-dispatcher-openapi.json';
 
 #-> methods
 
@@ -41,7 +41,7 @@ __END__
 
 =head1 NAME
 
-Navel::API::Swagger2::Scheduler
+Navel::API::OpenAPI::Dispatcher
 
 =head1 COPYRIGHT
 
