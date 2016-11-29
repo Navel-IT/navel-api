@@ -705,19 +705,6 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "database_host": {
-                    "type": "string",
-                    "minLength": 1
-                },
-                "database_port": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 65535
-                },
-                "database_connection_timeout": {
-                    "type": "integer",
-                    "minimum": 0
-                },
                 "database_tls": {
                     "type": [
                         "integer",
@@ -754,6 +741,19 @@
                         "null"
                     ]
                 },
+                "database_host": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "database_port": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 65535
+                },
+                "database_basepath": {
+                    "type": "string",
+                    "minLength": 1
+                },
                 "consumer_queue_size" : {
                     "type": "integer",
                     "minimum": 0
@@ -783,14 +783,14 @@
                     "type": "object",
                     "required": [
                         "name",
-                        "database_host",
-                        "database_port",
-                        "database_connection_timeout",
                         "database_tls",
                         "database_tls_verify",
                         "database_tls_ca_cert",
                         "database_user",
                         "database_password",
+                        "database_host",
+                        "database_port",
+                        "database_basepath"
                         "consumer_queue_size",
                         "consumer_backend",
                         "consumer_backend_input",
