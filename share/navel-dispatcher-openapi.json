@@ -790,7 +790,7 @@
                         "database_password",
                         "database_host",
                         "database_port",
-                        "database_basepath"
+                        "database_basepath",
                         "consumer_queue_size",
                         "consumer_backend",
                         "consumer_backend_input",
