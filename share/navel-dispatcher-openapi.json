@@ -409,6 +409,49 @@
                 }
             }
         },
+        "/storekeepers/{name}/database/connection": {
+            "get": {
+                "summary": "Show the connection status of the database associated with a storekeeper",
+                "operationId": "showDatabaseConnectionStatusAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_database_connection_status",
+                "tags": [
+                    "storekeeper",
+                    "database",
+                    "connection"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Database connection status",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "active_connections"
+                            ],
+                            "properties": {
+                                "active_connections": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
         "/storekeepers/{name}/consumer/queue": {
             "get": {
                 "summary": "Show informations on the consumer queue associated with a storekeeper",
@@ -469,6 +512,37 @@
                 }
             }
         },
+        "/storekeepers/{name}/consumer/connection": {
+            "get": {
+                "summary": "Show the connection status of the consumer associated with a storekeeper",
+                "operationId": "showConsumerConnectionStatusAssociatedWithStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_connection_status",
+                "tags": [
+                    "storekeeper",
+                    "consumer",
+                    "connection"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/couldBeConnectableConnectionStatus"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
         "/storekeepers/{name}/publisher/queue": {
             "get": {
                 "summary": "Show informations on the publisher queue associated with a storekeeper",
@@ -516,80 +590,6 @@
                 "responses": {
                     "200": {
                         "$ref": "#/responses/oKKO"
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/storekeepers/{name}/database/connection": {
-            "get": {
-                "summary": "Show the connection status of the database associated with a storekeeper",
-                "operationId": "showDatabaseConnectionStatusAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_database_connection_status",
-                "tags": [
-                    "storekeeper",
-                    "database",
-                    "connection"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/name"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Database connection status",
-                        "schema": {
-                            "type": "object",
-                            "required": [
-                                "active_connections"
-                            ],
-                            "properties": {
-                                "active_connections": {
-                                    "type": "integer",
-                                    "minimum": 0
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/badRequest"
-                    },
-                    "404": {
-                        "$ref": "#/responses/resourceCouldNotBeFound"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/storekeepers/{name}/consumer/connection": {
-            "get": {
-                "summary": "Show the connection status of the consumer associated with a storekeeper",
-                "operationId": "showConsumerConnectionStatusAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_connection_status",
-                "tags": [
-                    "storekeeper",
-                    "consumer",
-                    "connection"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/name"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "$ref": "#/responses/couldBeConnectableConnectionStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
