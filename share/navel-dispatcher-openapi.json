@@ -546,7 +546,19 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/connectionStatus"
+                        "description": "Database connection status",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "active_connections"
+                            ],
+                            "properties": {
+                                "active_connections": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                }
+                            }
+                        }
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -577,7 +589,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/connectionStatus"
+                        "$ref": "#/responses/couldBeConnectableConnectionStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -608,7 +620,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/connectionStatus"
+                        "$ref": "#/responses/couldBeConnectableConnectionStatus"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -866,7 +878,7 @@
                 }
             }
         },
-        "connectionStatus": {
+        "couldBeConnectableConnectionStatus": {
             "description": "Connection status",
             "schema": {
                 "type": "object",
