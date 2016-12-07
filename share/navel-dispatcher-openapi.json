@@ -409,13 +409,70 @@
                 }
             }
         },
-        "/storekeepers/{name}/database/connection": {
+        "/storekeepers/{name}/worker": {
+            "get": {
+                "summary": "Show informations on the worker of a storekeeper",
+                "operationId": "showWorkerStatusOfAStorekeeper",
+                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_worker_status",
+                "tags": [
+                    "storekeeper",
+                    "worker"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Worker's informations",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "healthy",
+                                "initialized"
+                            ],
+                            "properties": {
+                                "healthy": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "initialized": {
+                                    "type": [
+                                        "integer",
+                                        "boolean"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "404": {
+                        "$ref": "#/responses/resourceCouldNotBeFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storekeepers/{name}/worker/database/connection": {
             "get": {
                 "summary": "Show the connection status of the database associated with a storekeeper",
                 "operationId": "showDatabaseConnectionStatusAssociatedWithStorekeeper",
                 "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_database_connection_status",
                 "tags": [
                     "storekeeper",
+                    "worker",
                     "database",
                     "connection"
                 ],
@@ -429,6 +486,7 @@
                         "description": "Database connection status",
                         "schema": {
                             "type": "object",
+                            "additionalProperties": false,
                             "required": [
                                 "active_connections"
                             ],
@@ -452,13 +510,14 @@
                 }
             }
         },
-        "/storekeepers/{name}/consumer/queue": {
+        "/storekeepers/{name}/worker/consumer/queue": {
             "get": {
                 "summary": "Show informations on the consumer queue associated with a storekeeper",
                 "operationId": "showConsumerQueueAssociatedWithStorekeeper",
                 "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_queue",
                 "tags": [
                     "storekeeper",
+                    "worker",
                     "consumer",
                     "queue"
                 ],
@@ -512,13 +571,14 @@
                 }
             }
         },
-        "/storekeepers/{name}/consumer/connection": {
+        "/storekeepers/{name}/worker/consumer/connection": {
             "get": {
                 "summary": "Show the connection status of the consumer associated with a storekeeper",
                 "operationId": "showConsumerConnectionStatusAssociatedWithStorekeeper",
                 "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_connection_status",
                 "tags": [
                     "storekeeper",
+                    "worker",
                     "consumer",
                     "connection"
                 ],
@@ -543,13 +603,14 @@
                 }
             }
         },
-        "/storekeepers/{name}/publisher/queue": {
+        "/storekeepers/{name}/worker/publisher/queue": {
             "get": {
                 "summary": "Show informations on the publisher queue associated with a storekeeper",
                 "operationId": "showPublisherQueueAssociatedWithStorekeeper",
                 "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_queue",
                 "tags": [
                     "storekeeper",
+                    "worker",
                     "publisher",
                     "queue"
                 ],
@@ -603,13 +664,14 @@
                 }
             }
         },
-        "/storekeepers/{name}/publisher/connection": {
+        "/storekeepers/{name}/worker/publisher/connection": {
             "get": {
                 "summary": "Show the connection status of the publisher associated with a storekeeper",
                 "operationId": "showPublisherConnectionStatusAssociatedWithStorekeeper",
                 "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_connection_status",
                 "tags": [
                     "storekeeper",
+                    "worker",
                     "publisher",
                     "connection"
                 ],
@@ -867,6 +929,7 @@
             "description": "Queue status",
             "schema": {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                     "amount_of_events"
                 ],
