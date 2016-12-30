@@ -787,20 +787,9 @@
                     "minimum": 0,
                     "maximum": 1
                 },
-                "database_tls_verify": {
-                    "type": [
-                        "integer",
-                        "boolean"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "database_tls_ca_cert": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "minLength": 1
+                "database_tls_ctx": {
+                    "type": "object",
+                    "properties": {}
                 },
                 "database_user": {
                     "type": [
@@ -858,8 +847,7 @@
                     "required": [
                         "name",
                         "database_tls",
-                        "database_tls_verify",
-                        "database_tls_ca_cert",
+                        "database_tls_ctx",
                         "database_user",
                         "database_password",
                         "database_host",
