@@ -5,7 +5,7 @@
 
 #-> initialization
 
-package Navel::API::OpenAPI::Dispatcher 0.1;
+package Navel::API::OpenAPI::DispatcherManager 0.1;
 
 use Navel::Base;
 
@@ -13,7 +13,7 @@ use parent 'Navel::Base::API::OpenAPI';
 
 #-> class variables
 
-our $SPEC_FILENAME = 'navel-dispatcher-openapi.json';
+our $SPEC_FILENAME = 'navel-dispatcher-manager-openapi.json';
 
 #-> methods
 
@@ -41,7 +41,7 @@ __END__
 
 =head1 NAME
 
-Navel::API::OpenAPI::Dispatcher
+Navel::API::OpenAPI::DispatcherManager
 
 =head1 COPYRIGHT
 

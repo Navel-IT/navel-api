@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "navel-dispatcher",
-        "description": "https://github.com/navel-it/navel-dispatcher",
+        "title": "navel-dispatcher-manager",
+        "description": "https://github.com/navel-it/navel-dispatcher-manager",
         "version": "0.1.0",
         "contact": {
             "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
@@ -271,17 +271,17 @@
                 }
             }
         },
-        "/storekeepers": {
+        "/dispatchers": {
             "get": {
-                "summary": "List storekeeper names",
-                "operationId": "listStorekeeperNames",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#list",
+                "summary": "List dispatcher names",
+                "operationId": "listDispatcherNames",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#list",
                 "tags": [
-                    "storekeeper"
+                    "dispatcher"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Storekeeper names",
+                        "description": "Dispatcher names",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -296,11 +296,11 @@
                 }
             },
             "post": {
-                "summary": "Create a storekeeper",
-                "operationId": "createStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#create",
+                "summary": "Create a dispatcher",
+                "operationId": "createDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#create",
                 "tags": [
-                    "storekeeper"
+                    "dispatcher"
                 ],
                 "parameters": [
                     {
@@ -323,13 +323,13 @@
                 }
             }
         },
-        "/storekeepers/{name}": {
+        "/dispatchers/{name}": {
             "get": {
-                "summary": "Show the properties of a storekeeper",
-                "operationId": "showStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show",
+                "summary": "Show the properties of a dispatcher",
+                "operationId": "showDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show",
                 "tags": [
-                    "storekeeper"
+                    "dispatcher"
                 ],
                 "parameters": [
                     {
@@ -338,9 +338,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Storekeeper",
+                        "description": "Dispatcher",
                         "schema": {
-                            "$ref": "#/definitions/storekeeper"
+                            "$ref": "#/definitions/dispatcher"
                         }
                     },
                     "404": {
@@ -352,11 +352,11 @@
                 }
             },
             "put": {
-                "summary": "Update a storekeeper",
-                "operationId": "updateStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#update",
+                "summary": "Update a dispatcher",
+                "operationId": "updateDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#update",
                 "tags": [
-                    "storekeeper"
+                    "dispatcher"
                 ],
                 "parameters": [
                     {
@@ -382,11 +382,11 @@
                 }
             },
             "delete": {
-                "summary": "Delete a storekeeper",
-                "operationId": "deleteStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete",
+                "summary": "Delete a dispatcher",
+                "operationId": "deleteDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#delete",
                 "tags": [
-                    "storekeeper"
+                    "dispatcher"
                 ],
                 "parameters": [
                     {
@@ -409,13 +409,13 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker": {
+        "/dispatchers/{name}/worker": {
             "get": {
-                "summary": "Show informations on the worker of a storekeeper",
-                "operationId": "showWorkerStatusOfAStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_worker_status",
+                "summary": "Show informations on the worker of a dispatcher",
+                "operationId": "showWorkerStatusOfADispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_worker_status",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker"
                 ],
                 "parameters": [
@@ -465,15 +465,15 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker/database/connection": {
+        "/dispatchers/{name}/worker/filler/connection": {
             "get": {
-                "summary": "Show the connection status of the database associated with a storekeeper",
-                "operationId": "showDatabaseConnectionStatusAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_database_connection_status",
+                "summary": "Show the connection status of the filler associated with a dispatcher",
+                "operationId": "showFillerConnectionStatusAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_associated_filler_connection_status",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker",
-                    "database",
+                    "filler",
                     "connection"
                 ],
                 "parameters": [
@@ -483,7 +483,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Database connection status",
+                        "description": "Filler connection status",
                         "schema": {
                             "type": "object",
                             "additionalProperties": false,
@@ -510,13 +510,13 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker/consumer/queue": {
+        "/dispatchers/{name}/worker/consumer/queue": {
             "get": {
-                "summary": "Show informations on the consumer queue associated with a storekeeper",
-                "operationId": "showConsumerQueueAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_queue",
+                "summary": "Show informations on the consumer queue associated with a dispatcher",
+                "operationId": "showConsumerQueueAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_associated_consumer_queue",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker",
                     "consumer",
                     "queue"
@@ -542,11 +542,11 @@
                 }
             },
             "delete": {
-                "summary": "Delete all events in the consumer queue associated with a storekeeper",
-                "operationId": "deleteAllEventsFromConsumerQueueAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete_all_events_from_associated_consumer_queue",
+                "summary": "Delete all events in the consumer queue associated with a dispatcher",
+                "operationId": "deleteAllEventsFromConsumerQueueAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#delete_all_events_from_associated_consumer_queue",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "consumer",
                     "queue"
                 ],
@@ -571,13 +571,13 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker/consumer/connection": {
+        "/dispatchers/{name}/worker/consumer/connection": {
             "get": {
-                "summary": "Show the connection status of the consumer associated with a storekeeper",
-                "operationId": "showConsumerConnectionStatusAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_consumer_connection_status",
+                "summary": "Show the connection status of the consumer associated with a dispatcher",
+                "operationId": "showConsumerConnectionStatusAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_associated_consumer_connection_status",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker",
                     "consumer",
                     "connection"
@@ -603,13 +603,13 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker/publisher/queue": {
+        "/dispatchers/{name}/worker/publisher/queue": {
             "get": {
-                "summary": "Show informations on the publisher queue associated with a storekeeper",
-                "operationId": "showPublisherQueueAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_queue",
+                "summary": "Show informations on the publisher queue associated with a dispatcher",
+                "operationId": "showPublisherQueueAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_associated_publisher_queue",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker",
                     "publisher",
                     "queue"
@@ -635,11 +635,11 @@
                 }
             },
             "delete": {
-                "summary": "Delete all events in the publisher queue associated with a storekeeper",
-                "operationId": "deleteAllEventsFromPublisherQueueAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#delete_all_events_from_associated_publisher_queue",
+                "summary": "Delete all events in the publisher queue associated with a dispatcher",
+                "operationId": "deleteAllEventsFromPublisherQueueAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#delete_all_events_from_associated_publisher_queue",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "publisher",
                     "queue"
                 ],
@@ -664,13 +664,13 @@
                 }
             }
         },
-        "/storekeepers/{name}/worker/publisher/connection": {
+        "/dispatchers/{name}/worker/publisher/connection": {
             "get": {
-                "summary": "Show the connection status of the publisher associated with a storekeeper",
-                "operationId": "showPublisherConnectionStatusAssociatedWithStorekeeper",
-                "x-mojo-to": "Controller::OpenAPI::Storekeeper#show_associated_publisher_connection_status",
+                "summary": "Show the connection status of the publisher associated with a dispatcher",
+                "operationId": "showPublisherConnectionStatusAssociatedWithDispatcher",
+                "x-mojo-to": "Controller::OpenAPI::Dispatcher#show_associated_publisher_connection_status",
                 "tags": [
-                    "storekeeper",
+                    "dispatcher",
                     "worker",
                     "publisher",
                     "connection"
@@ -702,10 +702,10 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-                "storekeepers"
+                "dispatchers"
             ],
             "properties": {
-                "storekeepers": {
+                "dispatchers": {
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
@@ -771,7 +771,7 @@
                 }
             }
         },
-        "baseStorekeeper": {
+        "baseDispatcher": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
@@ -779,7 +779,7 @@
                     "type": "string",
                     "minLength": 1
                 },
-                "database_tls": {
+                "filler_tls": {
                     "type": [
                         "integer",
                         "boolean"
@@ -787,33 +787,33 @@
                     "minimum": 0,
                     "maximum": 1
                 },
-                "database_tls_ctx": {
+                "filler_tls_ctx": {
                     "type": "object",
                     "properties": {}
                 },
-                "database_user": {
+                "filler_user": {
                     "type": [
                         "string",
                         "null"
                     ],
                     "minLength": 1
                 },
-                "database_password": {
+                "filler_password": {
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "database_host": {
+                "filler_host": {
                     "type": "string",
                     "minLength": 1
                 },
-                "database_port": {
+                "filler_port": {
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 65535
                 },
-                "database_basepath": {
+                "filler_basepath": {
                     "type": "string",
                     "minLength": 1
                 },
@@ -837,22 +837,22 @@
                 "publisher_backend_input": {}
             }
         },
-        "storekeeper": {
+        "dispatcher": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/baseStorekeeper"
+                    "$ref": "#/definitions/baseDispatcher"
                 },
                 {
                     "type": "object",
                     "required": [
                         "name",
-                        "database_tls",
-                        "database_tls_ctx",
-                        "database_user",
-                        "database_password",
-                        "database_host",
-                        "database_port",
-                        "database_basepath",
+                        "filler_tls",
+                        "filler_tls_ctx",
+                        "filler_user",
+                        "filler_password",
+                        "filler_host",
+                        "filler_port",
+                        "filler_basepath",
                         "consumer_queue_size",
                         "consumer_backend",
                         "consumer_backend_input",
@@ -900,7 +900,7 @@
             "in": "body",
             "required": true,
             "schema": {
-                "$ref": "#/definitions/baseStorekeeper"
+                "$ref": "#/definitions/baseDispatcher"
             }
         },
         "definition": {
@@ -908,7 +908,7 @@
             "in": "body",
             "required": true,
             "schema": {
-                "$ref": "#/definitions/storekeeper"
+                "$ref": "#/definitions/dispatcher"
             }
         }
     },

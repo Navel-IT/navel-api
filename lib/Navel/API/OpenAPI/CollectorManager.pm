@@ -5,7 +5,7 @@
 
 #-> initialization
 
-package Navel::API::OpenAPI::Scheduler 0.1;
+package Navel::API::OpenAPI::CollectorManager 0.1;
 
 use Navel::Base;
 
@@ -13,7 +13,7 @@ use parent 'Navel::Base::API::OpenAPI';
 
 #-> class variables
 
-our $SPEC_FILENAME = 'navel-scheduler-openapi.json';
+our $SPEC_FILENAME = 'navel-collector-manager-openapi.json';
 
 #-> methods
 
@@ -41,7 +41,7 @@ __END__
 
 =head1 NAME
 
-Navel::API::OpenAPI::Scheduler
+Navel::API::OpenAPI::CollectorManager
 
 =head1 COPYRIGHT
 

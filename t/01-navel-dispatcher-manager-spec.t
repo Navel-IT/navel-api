@@ -17,14 +17,14 @@ use Test::File::ShareDir -share => {
 };
 
 BEGIN {
-    use_ok('Navel::API::OpenAPI::Scheduler');
+    use_ok('Navel::API::OpenAPI::DispatcherManager');
 }
 
 #-> main
 
 lives_ok {
-    Navel::API::OpenAPI::Scheduler->new;
-} 'loading navel-scheduler spec';
+    Navel::API::OpenAPI::DispatcherManager->new;
+} 'loading navel-dispatcher-manager spec';
 
 #-> END
 
