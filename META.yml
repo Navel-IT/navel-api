@@ -25,7 +25,7 @@ requires:
   File::ShareDir: '0'
   Navel::Base: '0'
   JSON::Validator: '0'
-  perl: v5.18.0
+  perl: v5.20.0
 resources:
   license: http://www.apache.org/licenses/LICENSE-2.0.html
   repository: http://github.com/Navel-IT/navel-api

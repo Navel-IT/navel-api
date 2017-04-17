@@ -39,7 +39,7 @@
             "File::ShareDir" : "0",
             "Navel::Base" : "0",
             "JSON::Validator" : "0",
-            "perl" : "v5.18.0"
+            "perl" : "v5.20.0"
          }
       }
    },
