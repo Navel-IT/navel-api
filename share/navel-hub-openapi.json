@@ -1,0 +1,217 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "navel-hub",
+        "description": "https://github.com/navel-it/navel-hub",
+        "version": "0.1.0",
+        "contact": {
+            "name": "Yoann Le Garff, Nicolas Boquet and Yann Le Bras"
+        },
+        "license": {
+            "name": "Apache License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/status": {
+            "get": {
+                "summary": "Show product status",
+                "operationId": "showStatus",
+                "x-mojo-to": "Controller::OpenAPI::Product#show_status",
+                "tags": [
+                    "status"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product status",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "version"
+                            ],
+                            "properties": {
+                                "version": {
+                                    "type": [
+                                        "string",
+                                        "integer",
+                                        "number"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/unauthorized"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Log in a user based on name and password",
+                "operationId": "loginUser",
+                "x-mojo-to": "Controller::OpenAPI::User#login",
+                "x-navel-authentication": false,
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/userinfo"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "delete": {
+                "summary": "Logout a user",
+                "operationId": "logoutUser",
+                "x-mojo-to": "Controller::OpenAPI::User#logout",
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/oKKO"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/storer": {},
+        "/collector-managers": {
+            "get": {
+                "summary": "List collector managers names",
+                "operationId": "listCollectorManagersNames",
+                "x-mojo-to": "Controller::OpenAPI::CollectorManager#list",
+                "tags": [
+                    "collector-manager"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Collector managers names",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/unauthorized"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/collector-managers/{name}": {}
+    },
+    "definitions": {
+        "oKKO": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "ok",
+                "ko"
+            ],
+            "properties": {
+                "ok": {
+                    "type": "array",
+                    "items": {}
+                },
+                "ko": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        }
+    },
+    "parameters": {
+        "name": {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "userinfo": {
+            "name": "userinfo",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "oKKO": {
+            "description": "OK and KO messages",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "badRequest": {
+            "description": "Incorrect request",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "unauthorized": {
+            "description": "Unauthorized",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "resourceCouldNotBeFound": {
+            "description": "This resource could not be found",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "resourceAlreadyExists": {
+            "description": "This resource already exists",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        },
+        "unexpectedError": {
+            "description": "Unexpected Error",
+            "schema": {
+                "$ref": "#/definitions/oKKO"
+            }
+        }
+    }
+}
