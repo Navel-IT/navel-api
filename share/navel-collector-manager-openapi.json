@@ -65,7 +65,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -202,7 +202,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -231,7 +231,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -260,7 +260,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "404": {
                         "$ref": "#/responses/resourceCouldNotBeFound"
@@ -309,7 +309,7 @@
                 ],
                 "responses": {
                     "201": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -368,7 +368,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -395,7 +395,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -524,7 +524,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/okKo"
                     },
                     "400": {
                         "$ref": "#/responses/badRequest"
@@ -740,7 +740,7 @@
                 }
             ]
         },
-        "oKKO": {
+        "okKo": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -790,34 +790,34 @@
         }
     },
     "responses": {
-        "oKKO": {
+        "okKo": {
             "description": "OK and KO messages",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "badRequest": {
             "description": "Incorrect request",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "resourceCouldNotBeFound": {
             "description": "This resource could not be found",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "resourceAlreadyExists": {
             "description": "This resource already exists",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "unexpectedError": {
             "description": "Unexpected Error",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         }
     }
