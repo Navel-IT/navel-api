@@ -20,6 +20,53 @@
         "application/json"
     ],
     "paths": {
+        "/user/login": {
+            "post": {
+                "summary": "Log in a user based on name and password",
+                "operationId": "loginUser",
+                "x-mojo-to": "Controller::OpenAPI::User#login",
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/userinfo"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/okKo"
+                    },
+                    "403": {
+                        "$ref": "#/responses/forbidden"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "delete": {
+                "summary": "Logout a user",
+                "operationId": "logoutUser",
+                "x-mojo-to": "Controller::OpenAPI::User#logout",
+                "tags": [
+                    "user"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/okKo"
+                    },
+                    "400": {
+                        "$ref": "#/responses/badRequest"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        },
         "/status": {
             "get": {
                 "summary": "Show product status",
@@ -57,38 +104,20 @@
                 }
             }
         },
-        "/user/login": {
-            "post": {
-                "summary": "Log in a user based on name and password",
-                "operationId": "loginUser",
-                "x-mojo-to": "Controller::OpenAPI::User#login",
-                "x-navel-authentication": false,
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/userinfo"
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "$ref": "#/responses/oKKO"
-                    },
-                    "default": {
-                        "$ref": "#/responses/unexpectedError"
-                    }
-                }
-            }
-        },
-        "/user/logout": {
-            "delete": {
-                "summary": "Logout a user",
-                "operationId": "logoutUser",
-                "x-mojo-to": "Controller::OpenAPI::User#logout",
+        "/storer": {
+            "get": {
+                "summary": "Storer prox informations",
+                "operationId": "showStorerProxy",
+                "x-mojo-to": "Controller::OpenAPI::Storer#show_proxy",
                 "tags": [
-                    "user"
+                    "storer"
                 ],
                 "responses": {
                     "200": {
-                        "$ref": "#/responses/oKKO"
+                        "$ref": "#/responses/proxyInformation"
+                    },
+                    "401": {
+                        "$ref": "#/responses/unauthorized"
                     },
                     "default": {
                         "$ref": "#/responses/unexpectedError"
@@ -96,7 +125,6 @@
                 }
             }
         },
-        "/storer": {},
         "/collector-managers": {
             "get": {
                 "summary": "List collector managers names",
@@ -125,10 +153,35 @@
                 }
             }
         },
-        "/collector-managers/{name}": {}
+        "/collector-managers/{name}": {
+            "get": {
+                "summary": "Collector manager proxy informations",
+                "operationId": "showCollectorManagerProxy",
+                "x-mojo-to": "Controller::OpenAPI::CollectorManager#show_proxy",
+                "tags": [
+                    "collector-manager"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/responses/proxyInformation"
+                    },
+                    "401": {
+                        "$ref": "#/responses/unauthorized"
+                    },
+                    "default": {
+                        "$ref": "#/responses/unexpectedError"
+                    }
+                }
+            }
+        }
     },
     "definitions": {
-        "oKKO": {
+        "okKo": {
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -177,40 +230,67 @@
         }
     },
     "responses": {
-        "oKKO": {
+        "proxyInformation": {
+            "description": "Proxy's informations",
+            "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "remote",
+                    "location"
+                ],
+                "properties": {
+                    "remote": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "location": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        },
+        "okKo": {
             "description": "OK and KO messages",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "badRequest": {
             "description": "Incorrect request",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "unauthorized": {
             "description": "Unauthorized",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
+            }
+        },
+        "forbidden": {
+            "description": "Forbidden",
+            "schema": {
+                "$ref": "#/definitions/okKo"
             }
         },
         "resourceCouldNotBeFound": {
             "description": "This resource could not be found",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "resourceAlreadyExists": {
             "description": "This resource already exists",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         },
         "unexpectedError": {
             "description": "Unexpected Error",
             "schema": {
-                "$ref": "#/definitions/oKKO"
+                "$ref": "#/definitions/okKo"
             }
         }
     }
